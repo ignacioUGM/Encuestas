@@ -13,22 +13,14 @@ class CreateNotesTable extends Migration
      */
     public function up()
     {
-        Schema::create('usuario', function (Blueprint $table) {
-            $table->id('id_usuario');
-            $table->string('nombre_usuario');
-            $table->string('apellido_usuario');
-            $table->string('clave_usuario');
-          
-        });
-        Schema::create('usuario', function (Blueprint $table) {
+        Schema::create('calificacion', function (Blueprint $table) {
             $table->id('id_pregunta');
-            $table->mediumText('comentario_calificacion');
-            $table->integer('nota_calificacion');
-            $table->id('id_usuario');
-            $table->id('id_evaluado');
-            $table->date('fecha_calificacion');
+            $table->string('comentario_calificacion');
+            $table->string('nota_calificacion');
+            $table->timestamp('fecha_calificacion');
           
         });
+
 
 
 
