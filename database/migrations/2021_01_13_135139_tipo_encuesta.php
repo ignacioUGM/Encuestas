@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class TipoDeEncuesta extends Migration
+class TipoEncuesta extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class TipoDeEncuesta extends Migration
      */
     public function up()
     {
-        Schema::create('tipo_de_encuesta',function(Blueprint $table){
+        Schema::create('tipo_encuesta',function(Blueprint $table){
 
-            $table->id('id_encuesta');
+            $table->id('id_tipo_encuesta');
             $table->string('nombre_encuesta');
      
      
@@ -32,6 +32,6 @@ class TipoDeEncuesta extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('tipo_encuesta');
     }
 }

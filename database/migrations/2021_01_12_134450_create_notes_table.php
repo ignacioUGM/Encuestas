@@ -14,9 +14,11 @@ class CreateNotesTable extends Migration
     public function up()
     {
         Schema::create('calificacion', function (Blueprint $table) {
-            $table->id('id_pregunta');
+            $table->bigInteger('id_pregunta')->index();
+            $table->bigInteger('id_usuario');
+            $table->bigInteger('id_evaluado');
             $table->string('comentario_calificacion');
-            $table->string('nota_calificacion');
+            $table->bigInteger('nota_calificacion');
             $table->timestamp('fecha_calificacion');
           
         });
@@ -33,6 +35,6 @@ class CreateNotesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('notes');
+        Schema::dropIfExists('calificacion');
     }
 }

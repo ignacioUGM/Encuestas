@@ -15,13 +15,14 @@ class Historial extends Migration
     {
         Schema::create('historial',function(Blueprint $table){
 
-            $table->id('id_encuesta');
-            //$table->index('id_usuario');
+            $table->bigInteger('id_encuesta');
+            $table->bigInteger('id_usuario');
+
             $table->string('nombre_encuesta');
-            //  $table->index('tipo_encuesta');
-            //$table->index('id_estado_usuario');
+            $table->bigInteger('tipo_encuesta');
+            $table->bigInteger('id_estado_usuario');
             $table->timestamp('fecha_historial');
-            //$table->index('estado_usuario_encuesta');
+            $table->bigInteger('estado_usuario_encuesta');
      
      
              });
@@ -34,6 +35,6 @@ class Historial extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('historial');
     }
 }

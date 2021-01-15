@@ -14,11 +14,12 @@ class ComentarioGeneral extends Migration
     public function up()
     {
         Schema::create('comentario_general',function(Blueprint $table){
-          $table->id('id_encuesta');
-          //$table->index('id_usuario');
-          //$table->index('id_evaluado');
+            $table->bigInteger('id_encuesta')->index();
+            //$table->string('id_encuesta')->unique();
+          $table->bigInteger('id_usuario');
+          $table->bigInteger('id_evaluado');
           $table->text('descripcion_comentario_general');
-          $table->timestamp('fecha_comentario_general');
+          $table->timestamp('fecha_comentario_general')->nullable();
 
 
         });
@@ -31,12 +32,12 @@ class ComentarioGeneral extends Migration
      */
     public function down()
     {
-        Schema::table('comentario_general',function(Blueprint $table){
-           
-//
+        
+        Schema::dropIfExists('comentario_general');           
 
 
-        });
+
+        
         
     }
 }

@@ -16,10 +16,10 @@ class UsuarioEncusta extends Migration
         Schema::create('usuario_encuesta',function(Blueprint $table){
 
             $table->id('id_usuario_encuesta');
-           // $table->index('id_usuario');
-            //$table->index('id_encuesta');            
+            $table->bigInteger('id_usuario')->index();
+            $table->bigInteger('id_encuesta')->index();            
             $table->timestamp('fecha_usuario_encuesta');                 
-            //$table->index('estado_encuesta');     
+            $table->bigInteger('estado_encuesta')->index();     
      
      
              });
@@ -32,6 +32,6 @@ class UsuarioEncusta extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('usuario_encuesta');
     }
 }

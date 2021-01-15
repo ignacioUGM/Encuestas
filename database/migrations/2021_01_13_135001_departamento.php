@@ -14,9 +14,9 @@ class Departamento extends Migration
     public function up()
     {
         Schema::create('departamento',function(Blueprint $table){
-
        $table->id('id_departamento');
-       $table->string('nombre_departamento');
+       //$table->string('id_departamento')->unique();
+       $table->string('nombre_departamento')->index();
        $table->text('descripcion_departamento');
        $table->timestamp('fecha_departamento');
 
@@ -35,6 +35,6 @@ class Departamento extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('departamento');
     }
 }

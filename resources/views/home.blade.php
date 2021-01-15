@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                  ¡te haz logeado correctamente, bienvenido  {{$user->name}}! 
+                  ¡te haz logeado correctamente, bienvenido  {{$user->name}} {{ Auth::user()->lastname }}! 
                 </div>
             </div>
         </div>

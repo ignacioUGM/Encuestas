@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ModelUserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,17 +18,36 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('login', function(){
+Route::get('encuestas', function(){
+    return view('encuestas');
+})->name('encuesta');
+
+
+Route::get('departamento', function(){
+    return view('departamento');
+})->name('departamento');
+
+/*Route::get('usuarios', function(){
+    return view('usuarios');
+})->name('usuarios');*/
+Route::get('historial', function(){
+    return view('historial');
+})->name('historial');
+Route::get('notificaciones', function(){
+    return view('notificaciones');
+})->name('notificaciones');
+Route::get('auth.login', function(){
     return view('auth.login');
-})->name('v1');
-
-Route::get('register', function(){
+})->name('login');
+Route::get('auth.register', function(){
     return view('auth.register');
-})->name('v2');
+})->name('register');
+Route::get('prueba_bd', function(){
+    return view('prueba_bd');
+})->name('prueba');
 
-Route::get('info', function(){
-    return view('info');
-})->name('v2');
+
+Route::get('usuarios',[ModelUserController::class, 'index']);
 
 Auth::routes();
 

@@ -16,7 +16,7 @@ class Genero extends Migration
         Schema::create('genero',function(Blueprint $table){
 
             $table->id('id_genero');
-            $table->string('nombre_genero');
+            $table->string('nombre_genero')->index();
         
      
      
@@ -33,6 +33,6 @@ class Genero extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('genero');
     }
 }
