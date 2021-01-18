@@ -47,7 +47,9 @@ Route::get('prueba_bd', function(){
 })->name('prueba');
 
 
-Route::get('usuarios',[ModelUserController::class, 'index']);
+Route::get('/usuarios',[ModelUserController::class, 'index','buscarpor',])->name('usuarios');
+Route::get('/usuarios',[ModelUserController::class, 'buscar',])->name('usuarios');
+
 
 Auth::routes();
 

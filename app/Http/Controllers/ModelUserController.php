@@ -12,12 +12,28 @@ class ModelUserController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
+     * 
      */
+    const PAGINACION=10;
+
     public function index()
     {
         $usuarios = DB::table('users')->get();
-        return view('usuarios', compact('usuarios'));
+        return view('usuarios.usuarios', compact('usuarios'));
     }
+
+    public function buscar(Request $request){
+
+        $buscarpor=$request->get('buscarpor');
+        $usuarios = DB::table('users')->where('name','like','%'.$buscarpor.'%') ->paginate($this::PAGINACION); 
+        return view('usuarios.usuarios', compact('usuarios','buscarpor'));
+
+
+
+
+     }
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -26,7 +42,7 @@ class ModelUserController extends Controller
      */
     public function create()
     {
-        //
+        return view('usuarios.create');
     }
 
     /**
@@ -38,6 +54,41 @@ class ModelUserController extends Controller
     public function store(Request $request)
     {
         //
+
+        // $rules = [
+           
+        //     'nombre' =>'required|string|max:20',
+        //     'email' =>'required|string|max:30',
+        //     'lastname' =>'required|string|max:20',
+        //     'password' =>'required|string|max:20|min:8',
+            
+        // ];
+        // $messages = [
+            
+            
+        //     'nombre.required' => 'El nombre es obligatorio',
+        //     'nombre.string' => 'El nombre debe ser alfanumerico',
+        //     'nombre.max' => 'El nombre no puede exceder los 20 caracteres',
+        //     'email.required' => 'El correo es obligatorio',
+        //     'email.string' => 'la dirrecion del correo deber ser alfanumerico',
+        //     'email.max' => 'la direccion del correo no debe superar los 30 caracteres',
+        //     'lastname.required' => 'el apellido debe ser obligatorio',
+        // ];
+
+        // $this->validate($request, $rules, $messages);
+
+        // DB::table('producto')->insert([
+        //   'codigo' => $request->codigo,
+        //   'nombre' => $request->nombre,
+        //   'precio' => $request->precio,
+        //   'descripcion' => $request->descripcion    
+        // ]);
+
+        // return back()->with('estado','El producto fue agregado con éxito');
+
+        
+    
+
     }
 
     /**
@@ -82,6 +133,7 @@ class ModelUserController extends Controller
      */
     public function destroy(ModelUser $modelUser)
     {
-        //
+        // DB::table('usuario')->where('codigo',$codigo)->delete();
+        // return back()->with('estado','El producto ha sido eliminado con exito');
     }
 }

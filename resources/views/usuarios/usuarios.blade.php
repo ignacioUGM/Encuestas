@@ -1,12 +1,10 @@
 @include('layouts.app')
-@extends('master')
-@section('contenedor')
+
+
+
 <!DOCTYPE html>
 <html lang="en">
-  <head>
 
-      
-  </head>
   <body>
  	
       <div class="container" style="width: 90%">
@@ -20,23 +18,27 @@
 			<div class="panel-body">
 	
 			<form class="form-horizontal" role="form">
+			         <form class="form-inline my-2 my-lg-0 float-right">
 				
 						<div class="form-group row">
 							<label for="q" class="col-md-2 control-label">Nombres:</label>
 							<div class="col-md-5">
-								<input type="text" class="form-control" id="q" placeholder="Nombre" onkeyup='load(1);'>
+							<input name="buscarpor" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" value="{{ $buscarpor }}" >
+							<button class="btn btn-success my-2 my-sm-0" type="submit">Buscar</button>
 							</div>
-							
-							
+
+
 						</div>
+					 </form>
+						<form>
 					
 						<table class="table table-striped">
                        <tr>
 	                    <th>ID</th>
                         <th>Nombres</th>
-                        <th>Apellidos</th>
+                        <th>Apellido</th>
+                        <th>Correo electronico</th>
                         <th>Genero</th>
-                        <th>Mail</th>
                         <th>Tipo Usuario</th>
                        
     </tr>
@@ -50,14 +52,13 @@
 	<td> {{$users->lastname}}</td>
     <td> {{$users->email}}</td>
     <td> {{$users->gender}}</td>
-	<td> {{$users->mail}}</td>
 	<td> {{$users->type_user}}</td>
 	
 
     </tr>
 	@endforeach
 </table>
-@endsection
+
 	
 			</form>
 				<div id="resultados"></div><!-- Carga los datos ajax -->
@@ -66,7 +67,7 @@
 		</div>
 
 	</div>
-	<hr>
-
+	
   </body>
+
 </html>
