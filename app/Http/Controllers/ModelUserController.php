@@ -19,14 +19,16 @@ class ModelUserController extends Controller
     public function index()
     {
         $usuarios = DB::table('users')->get();
-        return view('usuarios.usuarios', compact('usuarios'));
+        return view('usuarios', compact('usuarios'));
+
+
     }
 
     public function buscar(Request $request){
 
         $buscarpor=$request->get('buscarpor');
         $usuarios = DB::table('users')->where('name','like','%'.$buscarpor.'%') ->paginate($this::PAGINACION); 
-        return view('usuarios.usuarios', compact('usuarios','buscarpor'));
+        return view('usuarios', compact('usuarios','buscarpor'));
 
 
 
@@ -53,11 +55,11 @@ class ModelUserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
 
         // $rules = [
            
-        //     'nombre' =>'required|string|max:20',
+        //     'name' =>'required|string|max:20',
         //     'email' =>'required|string|max:30',
         //     'lastname' =>'required|string|max:20',
         //     'password' =>'required|string|max:20|min:8',
@@ -66,25 +68,32 @@ class ModelUserController extends Controller
         // $messages = [
             
             
-        //     'nombre.required' => 'El nombre es obligatorio',
-        //     'nombre.string' => 'El nombre debe ser alfanumerico',
-        //     'nombre.max' => 'El nombre no puede exceder los 20 caracteres',
+        //     'name.required' => 'El nombre es obligatorio',
+        //     'name.string' => 'El nombre debe ser alfanumerico',
+        //     'name.max' => 'El nombre no puede exceder los 20 caracteres',
         //     'email.required' => 'El correo es obligatorio',
         //     'email.string' => 'la dirrecion del correo deber ser alfanumerico',
         //     'email.max' => 'la direccion del correo no debe superar los 30 caracteres',
         //     'lastname.required' => 'el apellido debe ser obligatorio',
+        //     'lastname.string' => 'el apellido debe ser alfanumerico',
+        //     'lastname.max' => 'el apellido no debe superar los 20 caracteres',
+        //     'password.required' => 'la contraseña es obligatoria',
+        //     'password.min' => 'el apellido debe tener un minimo de 8 caracteres',
+        //     'password.max' => 'la contraseña no debe superar los 20 caracteres',
         // ];
 
         // $this->validate($request, $rules, $messages);
 
         // DB::table('producto')->insert([
-        //   'codigo' => $request->codigo,
-        //   'nombre' => $request->nombre,
-        //   'precio' => $request->precio,
-        //   'descripcion' => $request->descripcion    
+        //   'name' => $request->name,
+        //   'email' => $request->email,
+        //   'lastname' => $request->lastname,
+        //   'password' => $request->password,
+       
+            
         // ]);
 
-        // return back()->with('estado','El producto fue agregado con éxito');
+        // return back()->with('estado','El usuario fue agregado correctamente');
 
         
     
