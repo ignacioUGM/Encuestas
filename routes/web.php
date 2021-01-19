@@ -18,38 +18,63 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+
+
 Route::get('encuestas', function(){
     return view('encuestas');
 })->name('encuesta');
+
+
 
 
 Route::get('departamento', function(){
     return view('departamento');
 })->name('departamento');
 
-/*Route::get('usuarios', function(){
-    return view('usuarios');
-})->name('usuarios');*/
+
+
+
 Route::get('historial', function(){
     return view('historial');
 })->name('historial');
+
+
+
+
 Route::get('notificaciones', function(){
     return view('notificaciones');
 })->name('notificaciones');
+
+
+
+
 Route::get('auth.login', function(){
     return view('auth.login');
 })->name('login');
+
+
+
+
 Route::get('auth.register', function(){
     return view('auth.register');
 })->name('register');
-Route::get('prueba_bd', function(){
-    return view('prueba_bd');
-})->name('prueba');
 
 
-Route::get('usuarios',[ModelUserController::class, 'index',])->name('usuarios');
-Route::get('usuarios',[ModelUserController::class, 'buscar',])->name('usuarios');
+Route::get('usuarios',[ModelUserController::class, 'index'])->name('usuarios');
+
+
+
+Route::get('usuarios',[ModelUserController::class, 'buscar'])->name('usuarios');
+
+
+
 // Route::get('create',[ModelUserController::class, 'store',]);
+Route::get('add-users',[ModelUserController::class,'addUsers']);
+
+
+
+
 
 Auth::routes();
 

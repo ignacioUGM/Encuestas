@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ModelUser;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use PhpParser\Node\Stmt\TryCatch;
 
 class ModelUserController extends Controller
 {
@@ -14,26 +15,24 @@ class ModelUserController extends Controller
      * @return \Illuminate\Http\Response
      * 
      */
-    const PAGINACION=10;
+    const PAGINACION = 10;
 
     public function index()
     {
-        $usuarios = DB::table('users')->get();
-        return view('usuarios', compact('usuarios'));
-
+      //  $usuarios = DB::table('users')->get();
+        //return view('usuarios', compact('usuarios'));
+           $usuarios= User::orderBy('id','DESC')->get();
+            return view('usuarios',compact('usuarios'));
 
     }
 
-    public function buscar(Request $request){
+    public function buscar(Request $request)
+    {
 
-        $buscarpor=$request->get('buscarpor');
-        $usuarios = DB::table('users')->where('name','like','%'.$buscarpor.'%') ->paginate($this::PAGINACION); 
-        return view('usuarios', compact('usuarios','buscarpor'));
-
-
-
-
-     }
+        $buscarpor = $request->get('buscarpor');
+        $usuarios = DB::table('users')->where('name', 'like', '%' . $buscarpor . '%')->paginate($this::PAGINACION);
+        return view('usuarios', compact('usuarios', 'buscarpor'));
+    }
 
 
 
@@ -41,10 +40,52 @@ class ModelUserController extends Controller
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
+     *
      */
+
+
+
+    public function addUsers(Request $request)
+    {
+
+        try {
+            
+            $usuario = new User();
+            $usuario->name = $request->name;
+            $usuario->lastname = $request->lastname;
+            $usuario->email = $request->email;
+            $usuario->password = bcrypt($request->password);
+            $usuario->created_at = now();
+            $usuario->updated_at = now();
+            $usuario->save();
+            
+/*
+           $usuario = DB::table('users')->insert([
+         
+                'name'=>$request->name,
+                'email'=>$request->email,
+                'password'=>bcrypt($request->password),
+                'lastname'=>$request->lastname,
+        //        'gender'=>'2',
+        //        'type_user'=>'1'
+    
+       
+      
+              ]);
+
+¨*/
+
+            return response()->json($usuario);
+        } catch (\Throwable $th) {
+            return response()->json($th);
+        }
+    }
+
+
+
     public function create()
     {
-        return view('usuarios.create');
+        // return view('usuarios.create');
     }
 
     /**
@@ -55,19 +96,24 @@ class ModelUserController extends Controller
      */
     public function store(Request $request)
     {
-        
+
+
+
+
+
+
 
         // $rules = [
-           
+
         //     'name' =>'required|string|max:20',
         //     'email' =>'required|string|max:30',
         //     'lastname' =>'required|string|max:20',
         //     'password' =>'required|string|max:20|min:8',
-            
+
         // ];
         // $messages = [
-            
-            
+
+
         //     'name.required' => 'El nombre es obligatorio',
         //     'name.string' => 'El nombre debe ser alfanumerico',
         //     'name.max' => 'El nombre no puede exceder los 20 caracteres',
@@ -89,14 +135,14 @@ class ModelUserController extends Controller
         //   'email' => $request->email,
         //   'lastname' => $request->lastname,
         //   'password' => $request->password,
-       
-            
+
+
         // ]);
 
         // return back()->with('estado','El usuario fue agregado correctamente');
 
-        
-    
+
+
 
     }
 
@@ -106,7 +152,7 @@ class ModelUserController extends Controller
      * @param  \App\Models\ModelUser  $modelUser
      * @return \Illuminate\Http\Response
      */
-    public function show(ModelUser $modelUser)
+    public function show(User $modelUser)
     {
         //
     }
@@ -117,7 +163,7 @@ class ModelUserController extends Controller
      * @param  \App\Models\ModelUser  $modelUser
      * @return \Illuminate\Http\Response
      */
-    public function edit(ModelUser $modelUser)
+    public function edit(User $modelUser)
     {
         //
     }
@@ -129,7 +175,7 @@ class ModelUserController extends Controller
      * @param  \App\Models\ModelUser  $modelUser
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ModelUser $modelUser)
+    public function update(Request $request, User $modelUser)
     {
         //
     }
@@ -140,7 +186,7 @@ class ModelUserController extends Controller
      * @param  \App\Models\ModelUser  $modelUser
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ModelUser $modelUser)
+    public function destroy(User $modelUser)
     {
         // DB::table('usuario')->where('codigo',$codigo)->delete();
         // return back()->with('estado','El producto ha sido eliminado con exito');
