@@ -10,7 +10,7 @@
         
 
       <form id='userForm'>
-	  @csrf
+	    @csrf  
 	  <div class="form-group">
 	     <label for="name"> nombre</label>
 		 <input type="text" class="form-control" id="name"/>

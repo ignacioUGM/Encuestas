@@ -61,51 +61,44 @@ let email = $("#email").val();
 let password = $("#password").val();
 let _token = $("input[name=_token]").val();
 
-$.ajax({
+const data = {      
+   name:name,
+   lastname:lastname,
+   email:email,
+   password:password,
+   _token:_token
+}
+
+
+
+$.ajax(
+{
 
 	url:"add-users",
 	method:"GET",
-	data:{
-      
-	   name:name,
-	   lastname:lastname,
-	   email:email,
-	   password:password,
-	   _token:_token
-
-
-	},
-	success:function(response){
-
+	data,
+   success:function(response)
+{
+   console.log(data)
+   
      if(response){
       console.log(response)
       $("#userTable tbody").prepend('<tr><td>'+ response.name +'</td><td>'+ response.lastname +'</td><td>'+ response.email +'</td>'+ response.password +'<td></td></tr>')
 
-	$("#userForm")[0].reset();
-	$("#userModal").modal('hide');
+	    $("#userForm")[0].reset();
+	   $("#userModal").modal('hide');
 
 
-	 }
+    }
+    
 
-	}
+   }
 
-});
-
-
-
+   
 
 
-
-
-
-
-
-
-
-
-
-
-
+}
+);
 
 
 }
