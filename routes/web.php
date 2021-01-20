@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\departamentoController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ModelUserController;
 
@@ -62,6 +63,7 @@ Route::get('auth.register', function(){
 
 
 Route::get('usuarios',[ModelUserController::class, 'index'])->name('usuarios');
+Route::get('departamento',[departamentoController::class, 'index'])->name('departamento');
 
 
 

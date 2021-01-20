@@ -14,7 +14,7 @@ class departamentoSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('departamento')->insert([
+        DB::table('departamentos')->insert([
              
             'nombre_departamento'=>'Tecnologias de la informacion',
             'descripcion_departamento'=>'este departamento hace practicamente todo',

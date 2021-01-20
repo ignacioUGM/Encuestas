@@ -13,7 +13,7 @@ class Departamento extends Migration
      */
     public function up()
     {
-        Schema::create('departamento',function(Blueprint $table){
+        Schema::create('departamentos',function(Blueprint $table){
        $table->id('id_departamento');
        //$table->string('id_departamento')->unique();
        $table->string('nombre_departamento')->index();
@@ -35,6 +35,7 @@ class Departamento extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('departamento');
+        
+        Schema::dropIfExists('departamentos');
     }
 }

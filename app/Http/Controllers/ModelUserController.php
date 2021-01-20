@@ -8,6 +8,13 @@ use Illuminate\Support\Facades\DB;
 use PhpParser\Node\Stmt\TryCatch;
 use Symfony\Contracts\Service\Attribute\Required;
 
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Validator, Redirect, Response;
+use Session;
+
+
 class ModelUserController extends Controller
 {
     /**
@@ -51,43 +58,43 @@ class ModelUserController extends Controller
     
         try {
             
-            if (!isset($request->name)) {
-                return ['message' => 'Debe ingresar nombre', 'type' => 'error'];
-            }else
+            // if (!isset($request->name)) {
+            //     return ['message' => 'Debe ingresar nombre', 'type' => 'error'];
+            // }else
             
-            if (!isset($request->lastname)) {
-                return ['message' => 'Debe ingresar apellido4', 'type' => 'error'];
+            // if (!isset($request->lastname)) {
+            //     return ['message' => 'Debe ingresar apellido', 'type' => 'error'];
               
 
-              } else
+            //   } else
               
-              if (!isset($request->email)) {
-                return ['message' => 'Debe ingresar mail', 'type' => 'error'];
-              } 
+            //   if (!isset($request->email)) {
+            //     return ['message' => 'Debe ingresar mail', 'type' => 'error'];
+            //   } 
               
               
-              else
+            //   else
               
-              if (!filter_var($request->email, FILTER_VALIDATE_EMAIL)) {
-                return ['message' => 'Formato mail no valido', 'type' => 'error'];
-              } 
-              else
+            //   if (!filter_var($request->email, FILTER_VALIDATE_EMAIL)) {
+            //     return ['message' => 'Formato mail no valido', 'type' => 'error'];
+            //   } 
+            //   else
               
-              if (User::where('email', $request->email)->exists()) {
-                return ['message' => 'Mail ya existe en los registros', 'type' => 'error'];
-              } 
-               else
+            //   if (User::where('email', $request->email)->exists()) {
+            //     return ['message' => 'Mail ya existe en los registros', 'type' => 'error'];
+            //   } 
+            //    else
                
-               if (!isset($request->password)) {
-                return ['message' => 'Debe ingresar contraseña', 'type' => 'error'];
-              }
-               else
+            //    if (!isset($request->password)) {
+            //     return ['message' => 'Debe ingresar contraseña', 'type' => 'error'];
+            //   }
+            //    else
                
-               if (!preg_match('/^(?=.*\d)(?=.*[A-Za-z])[0-9A-Za-z!@#$%]{8,12}$/', $request->password)) {
-                return ['message' => 'Contraseña debe Contener: Mayúsculas, números y mas de 8 carácteres', 'type' => 'error'];
-              }
+            //    if (!preg_match('/^(?=.*\d)(?=.*[A-Za-z])[0-9A-Za-z!@#$%]{8,12}$/', $request->password)) {
+            //     return ['message' => 'Contraseña debe Contener: Mayúsculas, números y mas de 8 carácteres', 'type' => 'error'];
+            //   }
               
-               else {
+            //    else {
 
           
             $usuario = new User();
@@ -96,20 +103,19 @@ class ModelUserController extends Controller
             $usuario->email = $request->email;
             
 
-            
             $usuario->password = bcrypt($request->password);
             $usuario->created_at = now();
             $usuario->updated_at = now();
             
             $usuario->save();
 
-            return ['message' => 'Usuario Creado', 'type' => 'success'];
+            // return ['message' => 'Usuario Creado', 'type' => 'success'];
            return response()->json($usuario);
-      }
+    //   }
 
       } catch (\Throwable $th) {
             return response()->json($th);
-            return ['message' => $th->getMessage(), 'type' => 'error'];
+            // return ['message' => $th->getMessage(), 'type' => 'error'];
 
         }
     }

@@ -67,6 +67,7 @@ const data = {
    email:email,
    password:password,
    _token:_token
+   
 }
 
 
@@ -90,7 +91,6 @@ $.ajax(
 
 
     }
-    
 
    }
 
