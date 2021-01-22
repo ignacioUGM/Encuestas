@@ -36,7 +36,7 @@
 
 			<div class="card-body">
 				
-				<table id="userTable" class="table table-striped">
+				<table id="departamentoTable" class="table table-striped">
 				<thead>
 			   <tr>
 				<th>Nombre</th>
@@ -54,7 +54,7 @@
 <tr>
 <td> {{$departamento->nombre_departamento}} </td>
 <td> {{$departamento->descripcion_departamento}}</td>
-<td> {{$departamento->fecha_departamento}}</td>
+<td> {{$departamento->create_at}}</td>
 
 
 </tr>
@@ -89,6 +89,7 @@
 
          <!-- el select proviene de js -->
           <!-- <script type="text/javascript" src="js/funciones/departamento.js"></script> -->
-         <!-- <script type="text/javascript" src="js/departamento_page.js"></script>        -->
+		  <script src="{{ asset('js/departamento.js') }}" type="text/javascript"></script>
+		 <!-- <script type="text/javascript" src="js/departamento_page.js"></script>        -->
   </body>
 </html>

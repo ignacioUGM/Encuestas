@@ -36,19 +36,17 @@ class departamentoController extends Controller
             $departamento->descripcion_departamento = $request->descripcion_departamento;
      
             $departamento->created_at = now();
+            //$departamento->update_at = now();
+         
             $departamento->save();
+
+
             return response()->json($departamento);
+
         } catch (\Throwable $th) {
+            
             return response()->json($th);
         }
-
-
-
-
-
-
-
-
 
 
      }

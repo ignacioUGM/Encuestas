@@ -18,7 +18,7 @@ class Departamento extends Migration
        //$table->string('id_departamento')->unique();
        $table->string('nombre_departamento')->index();
        $table->text('descripcion_departamento');
-       $table->timestamp('fecha_departamento');
+       $table->timestamps('');
 
 
 

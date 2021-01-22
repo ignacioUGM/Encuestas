@@ -27,15 +27,6 @@ Route::get('encuestas', function(){
 })->name('encuesta');
 
 
-
-
-Route::get('departamento', function(){
-    return view('departamento');
-})->name('departamento');
-
-
-
-
 Route::get('historial', function(){
     return view('historial');
 })->name('historial');
@@ -48,36 +39,24 @@ Route::get('notificaciones', function(){
 })->name('notificaciones');
 
 
-
-
-Route::get('auth.login', function(){
-    return view('auth.login');
-})->name('login');
-
-
-
-
-Route::get('auth.register', function(){
-    return view('auth.register');
-})->name('register');
-
-
+//rutas de usuarios
 Route::get('usuarios',[ModelUserController::class, 'index'])->name('usuarios');
-Route::get('departamento',[departamentoController::class, 'index'])->name('departamento');
-
-
-
 Route::get('usuarios',[ModelUserController::class, 'buscar'])->name('usuarios');
+Route::get('add-users',[ModelUserController::class,'addUsers'])->name('add_users');
+
+
+//ruta del departamento
+Route::get('departamento',[departamentoController::class, 'index'])->name('departamento');
+Route::get('add-departamento',[departamentoController::class,'agregarDepartamento']);
 
 
 
-// Route::get('create',[ModelUserController::class, 'store',]);
-Route::get('add-users',[ModelUserController::class,'addUsers']);
 
-
-
-
-
+//rutas del auth
 Auth::routes();
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+ 
+
+
+//prueba    
+// Route::resource('usuario', [ModelUserController::class,'addUsers']);

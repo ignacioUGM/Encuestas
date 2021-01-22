@@ -16,12 +16,13 @@ class Departamento extends Model
         
         'nombre_departamento',
         'descripcion_departamento',
+        'created_at',
         
     ];
 
   
     
    protected $casts = [
-        'datetime',
+    'created_at' => 'datetime',
    ];
 }

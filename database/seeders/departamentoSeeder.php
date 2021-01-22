@@ -18,7 +18,7 @@ class departamentoSeeder extends Seeder
              
             'nombre_departamento'=>'Tecnologias de la informacion',
             'descripcion_departamento'=>'este departamento hace practicamente todo',
-            'fecha_departamento'=>'10-12-2020',
+            
 
   
   

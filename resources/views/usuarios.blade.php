@@ -1,5 +1,7 @@
 @include('layouts.app')
 @include('modal.modalUsuario')
+@include('modal.modalContraseña')
+@include('modal.modalUsuarioEdit')
 
 
 
@@ -57,11 +59,16 @@
     <td> {{$users->email}}</td>
     <td> {{$users->gender}}</td>
 	<td> {{$users->type_user}}</td>
+	<div class="btn-group pull-right">
+	<td><button type='button' class="btn btn-success btn-sm"  data-toggle="modal" data-target="#editModal"> editar contraseña </button></td>
+	<td><button type='button' class="btn btn-success btn-sm"  data-toggle="modal" data-target="#contraseñaModal"> cambiar contraseña </button></td>
 	
-
-    </tr>
+	</div>
+	</tr>
+	
 	@endforeach
 	</tbody>
+	
 </table>
 </div>
 
