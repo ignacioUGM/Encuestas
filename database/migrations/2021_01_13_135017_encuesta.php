@@ -13,12 +13,12 @@ class Encuesta extends Migration
      */
     public function up()
     {
-        Schema::create('encuesta',function(Blueprint $table){
+        Schema::create('encuestas',function(Blueprint $table){
             $table->id('id_encuesta');
             //$table->string('id_encuesta')->unique();
             $table->string('nombre_encuesta');
-            $table->bigInteger('tipo_de_encuesta')->index();
-            $table->timestamp('fecha_de_encuesta');
+            $table->bigInteger('tipo_encuesta')->index();
+            $table->timestamps();
             $table->bigInteger('estado_encuesta')->index();
             
      
@@ -36,6 +36,6 @@ class Encuesta extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('encuesta');
+        Schema::dropIfExists('encuestas');
     }
 }

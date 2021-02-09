@@ -63,17 +63,32 @@
                     <li class="nav-item">
                                     <a class="nav-link "  href="{{ route('encuesta') }}">{{ __('Encuestas') }}</a>
                                 </li>
+
+
+
+                                <li class="nav-item">
                                 <a class="nav-link "  href="{{ route('departamento') }}">{{ __('Departamentos') }}</a>
                                 </li>
+
+
+                                <li class="nav-item">
                                 <a class="nav-link "  href="{{ route('usuarios') }}">{{ __('Usuarios') }}</a>
                                 </li>
+
+
+
                                 <li class="nav-item">
                               <a class="nav-link" href="{{ route('historial') }}"> {{ __('Historial') }}</a>
                             </li>
-                            </li>
+
+
+                             <li class="nav-item">
                                 <a class="nav-link "  href="{{ route('notificaciones') }}">{{ __('Notificaciones') }}</a>
                                 </li>
                     </ul>
+
+
+                  
 
                     
 
@@ -81,11 +96,7 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @guest
-                              
-                          
 
-                            
-                           
 
                             @if (Route::has('login'))
                                 <li class="nav-item">

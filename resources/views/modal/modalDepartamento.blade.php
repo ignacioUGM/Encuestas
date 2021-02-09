@@ -4,7 +4,7 @@
 	  <div class="modal-dialog" role="document">
 		<div class="modal-content">
 		  <div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			
 			<h4 class="modal-title" id="myModalLabel"><i class='glyphicon glyphicon-edit'></i> Agregar nuevo Departamento</h4>
 		  </div>
 		  <div class="modal-body">
@@ -16,11 +16,22 @@
 			<form class="form-horizontal" id="guardar_departamento" name="guardar_departamento">
 			@csrf
 			<!-- <div id="resultados_ajax"></div> -->
-			  
+
+			<div class="line-height">
+			<div class="alert alert-danger" aria-hidden="">
+  
+			<label id='message'> </label>
+</div>
+
+	  </div>
+			
+
+
+
 			  <div class="form-group">
 				<label for="nombre" class="col-sm-3 control-label">Nombre</label>
 				<div class="col-sm-8">
-				  <input type="text" readonly class="form-control" id="nombre_departamento" name="nombre_departamento" required>
+				  <input type="text"  class="form-control" id="nombre_departamento" name="nombre_departamento" required>
 				</div>
 			  </div>
 			 
@@ -33,7 +44,6 @@
 				  
 				</div>
 			  </div>
-			  
 	 
 		  </div>
 		  <div class="modal-footer">

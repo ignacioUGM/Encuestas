@@ -1,8 +1,11 @@
 <?php
 
 use App\Http\Controllers\departamentoController;
+use App\Http\Controllers\encuestaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ModelUserController;
+use Illuminate\Database\Eloquent\Model;
+use Monolog\Handler\RotatingFileHandler;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,16 +19,18 @@ use App\Http\Controllers\ModelUserController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 
 
 
-Route::get('encuestas', function(){
-    return view('encuestas');
-})->name('encuesta');
+//historial
 
+
+Route::get('preguntas', function(){
+    return view('preguntas');
+})->name('preguntas');
 
 Route::get('historial', function(){
     return view('historial');
@@ -33,30 +38,39 @@ Route::get('historial', function(){
 
 
 
-
+//notificaciones
 Route::get('notificaciones', function(){
     return view('notificaciones');
 })->name('notificaciones');
 
 
+
+
+
+//rutas encuestas
+Route::get('encuesta',[encuestaController::class,'index'])->name('encuesta');
+Route::get('add-encuesta',[encuestaController::class,'addEncuesta']);
+
+
 //rutas de usuarios
 Route::get('usuarios',[ModelUserController::class, 'index'])->name('usuarios');
 Route::get('usuarios',[ModelUserController::class, 'buscar'])->name('usuarios');
-Route::get('add-users',[ModelUserController::class,'addUsers'])->name('add_users');
+Route::get('add-users',[ModelUserController::class,'addUsers']);
+Route::delete('delete-users/{id}',[ModelUserController::class,'deleteUsuario']);
+Route::get('edit-users/{id}',[ModelUserController::class,'getUsersId']);
+Route::put('update-users',[ModelUserController::class,'updateUsers']);
+Route::get('edit-contraseña/{id}',[ModelUserController::class,'getContraseñaId']);
+Route::put('change-password',[ModelUserController::class,'changePass']);
 
 
 //ruta del departamento
 Route::get('departamento',[departamentoController::class, 'index'])->name('departamento');
 Route::get('add-departamento',[departamentoController::class,'agregarDepartamento']);
-
-
-
+Route::get('edit-departamento/{id}',[departamentoController::class,'getDepartamentoId']);
+Route::put('update-departamento',[departamentoController::class,'updateDepartamento']);
+Route::delete('delete-departamento/{id}',[departamentoController::class,'deleteDepartamento']);
 
 //rutas del auth
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
  
-
-
-//prueba    
-// Route::resource('usuario', [ModelUserController::class,'addUsers']);

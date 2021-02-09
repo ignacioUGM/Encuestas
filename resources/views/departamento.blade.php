@@ -1,5 +1,6 @@
 @include('layouts.app')
 @include('modal.modalDepartamento')
+@include('modal.modalEditDepartamento')
 
 <!DOCTYPE html>
 <html lang="en">
@@ -51,10 +52,12 @@
 @foreach ($departamento as $departamento)
 
 
-<tr>
+<tr id="sid{{$departamento->id}}">
 <td> {{$departamento->nombre_departamento}} </td>
 <td> {{$departamento->descripcion_departamento}}</td>
-<td> {{$departamento->create_at}}</td>
+<td> {{$departamento->created_at}}</td>
+<td><button type='button' class="btn btn-success btn-sm"  data-toggle="modal" data-target="#editDepartamento" onclick="editaDepartamento({{$departamento->id}})"><i class='glyphicon glyphicon-edit'></i></button>
+<button type='button' class="btn btn-danger btn-sm"  data-toggle="modal" data-target="" onclick="DeleteDepartamento({{$departamento->id}})"> <i class='glyphicon glyphicon-trash'></i> </button></td>
 
 
 </tr>

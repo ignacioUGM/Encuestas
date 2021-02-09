@@ -17,8 +17,8 @@ class departamentoSeeder extends Seeder
         DB::table('departamentos')->insert([
              
             'nombre_departamento'=>'Tecnologias de la informacion',
-            'descripcion_departamento'=>'este departamento hace practicamente todo',
-            
+            'descripcion_departamento'=>'este es el departamento de las tecnologias de la información.',
+            'created_at'=>''
 
   
   

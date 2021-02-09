@@ -14,9 +14,18 @@ class tipo_encuestaSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('tipo_encuesta')->insert([
+        DB::table('tipo_encuestas')->insert([
              
-            'nombre_encuesta'=>'patito feo',
+            'nombre_tipo_encuesta'=>'Jefatura',
+            
+
+  
+  
+          ]);
+
+          DB::table('tipo_encuestas')->insert([
+             
+            'nombre_tipo_encuesta'=>'General',
             
 
   

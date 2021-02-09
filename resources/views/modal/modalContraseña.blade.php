@@ -3,21 +3,27 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Cambiar contraseña</h5>
-        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+        <h4 class="modal-title" id="exampleModalLabel"><i class='glyphicon glyphicon-edit'></i>Cambiar contraseña</h4>
+       
       </div>
       <div class="modal-body">
         
 
-      <form id='editForm'>
+      <form id='editContraForm'>
 	    @csrf  
-	 
-
-
-	  
+      <div class="form-group">
+	     <label id='message'> </label>
+	  </div>
+      <input type="hidden" id="id3" name="id"/>
+<!-- 
+	    <div class="form-group">
+	     <label for="password"> Nueva Contraseña</label>
+		 <input type="password" class="form-control" id="editContraseña" />
+      </div> -->
 	  <div class="form-group">
 	     <label for="password"> Nueva Contraseña</label>
-		 <input type="Cambiarpassword" class="form-control" id="cambiarPassword" />
+		 <input type="password" class="form-control" id="Editpassword" />
       </div>
       
       	  
@@ -30,7 +36,7 @@
 
 
 	  <div class="modal-footer">
-        <button type="button" class="btn btn-success" onclick="ContraseñaUsuarios()">Confirmar</button>
+        <button type="button" class="btn btn-success" onclick="CambiarContraseña()">Confirmar</button>
 		<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
 	  </div>
 	  </form>
