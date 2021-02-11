@@ -18,10 +18,14 @@
 			<!-- <div id="resultados_ajax"></div> -->
 
 			<div class="line-height">
-			<div class="alert alert-danger" aria-hidden="">
-  
-			<label id='message'> </label>
+		
+		
+		 <div class="alert"  role="alert">
+		 <label id='message'>	
 </div>
+		  </label> 
+			
+
 
 	  </div>
 			

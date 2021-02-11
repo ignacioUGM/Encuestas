@@ -4,6 +4,8 @@ use App\Http\Controllers\departamentoController;
 use App\Http\Controllers\encuestaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ModelUserController;
+use App\Http\Controllers\preguntasController;
+use App\Models\encuesta;
 use Illuminate\Database\Eloquent\Model;
 use Monolog\Handler\RotatingFileHandler;
 
@@ -45,11 +47,15 @@ Route::get('notificaciones', function(){
 
 
 
+//rutas preguntas
+Route::get('preguntas',[preguntasController::class,'index']);
+
 
 
 //rutas encuestas
 Route::get('encuesta',[encuestaController::class,'index'])->name('encuesta');
 Route::get('add-encuesta',[encuestaController::class,'addEncuesta']);
+Route::get('recuperar-encuesta',[encuestaController::class,'recuperarEncuesta']);
 
 
 //rutas de usuarios

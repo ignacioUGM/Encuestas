@@ -5,14 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use PhpParser\Node\Stmt\TryCatch;
-use Symfony\Contracts\Service\Attribute\Required;
 
-use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use Validator, Redirect, Response;
-use Session;
 
 
 class ModelUserController extends Controller

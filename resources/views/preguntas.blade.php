@@ -46,10 +46,37 @@
 
 
 
+
                     </form>
+                    <div class="card-body">
+				
+                <table id="preguntasTable" class="table table-striped">
+                <thead>
+               <tr>
+                <th>Nombre</th>
+                <th>Descripcion</th>
+                <th>Acciones</th>
+
+               
+</tr>
+</thead>
+<tbody>
+
+@foreach ($preguntas as $pregunta)
 
 
 
+<td> {{$pregunta->nombre_pregunta}} </td>
+<td> {{$pregunta->descripcion_pregunta}}</td>
+<td><button type="button" class="btn btn-success btn-sm"  data-toggle="modal" data-target="#editModal"><i class='glyphicon glyphicon-edit'></i> </button>
+
+</td>
+</tr>
+
+@endforeach
+    </tbody>
+        </table>
+                   </div>
                 </div>
             </div>
 

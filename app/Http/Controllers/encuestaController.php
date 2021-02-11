@@ -14,6 +14,7 @@ class encuestaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    
     public function index()
     {
         try {
@@ -21,17 +22,11 @@ class encuestaController extends Controller
 
        
 
-
-
-
-
-
-
             $tipo_encuestas = tipo_encuesta::all();
             $encuestas = encuesta::orderBy('id_encuesta', 'ASC')->join('tipo_encuestas', 'tipo_encuestas.id_tipo_encuesta', '=', 'encuestas.tipo_encuesta', 'encuestas')
-            ->select('tipo_encuestas.nombre_tipo_encuesta', 'encuestas.nombre_encuesta','encuestas.tipo_encuesta', 'encuestas.created_at')
+            ->select('encuestas.id_encuesta','tipo_encuestas.nombre_tipo_encuesta', 'encuestas.nombre_encuesta','encuestas.tipo_encuesta', 'encuestas.created_at')
             ->get();
-        
+
               return view('encuesta',compact('encuestas','tipo_encuestas'));
               
         } catch (\Throwable $th) {
@@ -127,10 +122,6 @@ class encuestaController extends Controller
 
 
                 } else{
-            
-            
-
-
 
 
             $encuesta = new encuesta();
@@ -142,6 +133,7 @@ class encuestaController extends Controller
             $encuesta->save();
 
         //    return $request;
+
            return response()->json($encuesta);
             }
         } catch (\Throwable $th) {
@@ -150,9 +142,22 @@ class encuestaController extends Controller
         }
      
 
-
-
-
-
     }
+   public function recuperarEncuesta(Request $request){
+
+    $encuesta = DB::table('encuestas')->where('id_encuesta', $request->id_encuesta)->first();
+
+ //   return  $request;
+    return view('preguntas', compact('encuesta'));
+ 
+
+
+
+
+
+
+
+   }
+
+
 }

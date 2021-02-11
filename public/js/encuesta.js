@@ -1,4 +1,4 @@
-const { error } = require("jquery");
+
 
 
 function encuesta(){
@@ -34,7 +34,7 @@ success:function(response)
          $("#view_encuesta").prepend("<div class='col-lg-2 col-md-2 col-sm-6 col-xs-12 thumb text-center ng-scope' ng - repeat='item in records'>"+"<a class='thumbnail' href='#'>"+"<img class='img-responsive' src='image/encuesta.png'>"+"</a>"+"<span class='thumb-name'>"+"<p>"+ response.tipo_encuesta +"</p>"+"</span>"+"<span class='thumb-code ng-binding'>"+"<p>"+ response.nombre_encuesta +"</p>"+"</span>"+"<span class='thumb-name'>"+"<p>"+ response.created_at +"</p>"+"</span>"+"</div>"); 
          $("#guardar_encuesta")[0].reset();
           $("#nueva_encuesta").modal('show');
-       } else(response) 
+       } else(response)     
          
         $("#message").html(response.message);
 
