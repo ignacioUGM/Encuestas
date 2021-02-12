@@ -1,8 +1,9 @@
 @include('layouts.app')
+@extends('modal.modalCrearPreguntas')
+
 <!DOCTYPE html>
 <html lang="en">
-
-<input type="hidden" id="id_encuesta" name="id_encuesta"  >    
+ 
         
         <div class="container">
             <div class="panel panel-success">
@@ -68,7 +69,7 @@
 
 <td> {{$pregunta->nombre_pregunta}} </td>
 <td> {{$pregunta->descripcion_pregunta}}</td>
-<td><button type="button" class="btn btn-success btn-sm"  data-toggle="modal" data-target="#editModal"><i class='glyphicon glyphicon-edit'></i> </button>
+<td><button type="button" class="btn btn-success btn-sm"  data-toggle="modal" data-target="#nueva_pregunta"><i class='glyphicon glyphicon-edit'></i> </button>
 
 </td>
 </tr>
@@ -81,5 +82,6 @@
             </div>
 
         </div>
+        <script src="{{ asset('js/pregunta.js') }}" type="text/javascript"></script>
 
 </html>

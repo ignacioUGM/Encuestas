@@ -48,8 +48,9 @@ Route::get('notificaciones', function(){
 
 
 //rutas preguntas
-Route::get('preguntas',[preguntasController::class,'index']);
-
+Route::get('preguntas',[preguntasController::class,'index'])->name('preguntas');
+Route::get('add-pregunta',[preguntasController::class,'addPregunta']);
+Route::get('recuperar-idencuesta/{id_encuesta}',[preguntasController::class,'getencuestaId']);                                                  
 
 
 //rutas encuestas

@@ -19,9 +19,8 @@ class Pregunta extends Migration
             $table->bigInteger('id_encuesta')->index();        
             $table->string('nombre_pregunta');
             $table->text('descripcion_pregunta');
-            
-     
-     
+            $table->timestamps();
+
              });
     }
 

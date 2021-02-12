@@ -16,6 +16,8 @@
 			@csrf
 			<!-- <div id="resultados_ajax"></div> -->
 			
+			<input  id="id_encuesta" name="id_encuesta"/>
+
 			<div class="form-group">
 			
 	     <label id='message'> </label>
@@ -30,7 +32,8 @@
 			  </div>
 			 
 				  
-			
+
+
 			  <div class="form-group">
 				<label for="descripcion" class="col-sm-3 control-label">Tipo de encuesta</label>
 				<div class="col-sm-8">
