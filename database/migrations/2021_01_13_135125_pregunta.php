@@ -15,7 +15,7 @@ class Pregunta extends Migration
     {
         Schema::create('pregunta',function(Blueprint $table){
 
-            $table->id('id_pregunta');
+            $table->id();
             $table->bigInteger('id_encuesta')->index();        
             $table->string('nombre_pregunta');
             $table->text('descripcion_pregunta');

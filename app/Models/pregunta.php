@@ -15,6 +15,7 @@ class pregunta extends Model
     protected $fillable = [
         'nombre_pregunta',
         'descripcion_pregunta',
+        'id_encuesta'
  
         
     ];

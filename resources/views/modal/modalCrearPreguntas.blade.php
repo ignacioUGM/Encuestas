@@ -14,8 +14,8 @@
 			
 			<form class="form-horizontal" id="guardar_pregunta" name="guardar_pregunta">
 			@csrf
-
-			<input type="text" id="recuperar" name="recuperar"  >   
+<!-- 
+			<input type="text" id="id_encuesta" name="id_encuesta"  >    -->
 			<!-- <div id="resultados_ajax"></div> -->
 
 			<div class="line-height">

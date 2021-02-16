@@ -50,9 +50,9 @@ Route::get('notificaciones', function(){
 //rutas preguntas
 Route::get('preguntas',[preguntasController::class,'index'])->name('preguntas');
 Route::get('add-pregunta',[preguntasController::class,'addPregunta']);
-Route::get('recuperar-idencuesta/{id_encuesta}',[preguntasController::class,'getencuestaId']);                                                  
-
-
+Route::get('recuperar-pregunta/{id}',[preguntasController::class,'getPreguntaId']);                                                  
+Route::put('update-pregunta',[preguntasController::class,'editarPreguntas']);
+Route::delete('delete-pregunta/{id}',[preguntasController::class,'deletePregunta']);
 //rutas encuestas
 Route::get('encuesta',[encuestaController::class,'index'])->name('encuesta');
 Route::get('add-encuesta',[encuestaController::class,'addEncuesta']);

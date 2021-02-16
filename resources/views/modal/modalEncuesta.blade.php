@@ -16,7 +16,7 @@
 			@csrf
 			<!-- <div id="resultados_ajax"></div> -->
 			
-			<input  id="id_encuesta" name="id_encuesta"/>
+			
 
 			<div class="form-group">
 			

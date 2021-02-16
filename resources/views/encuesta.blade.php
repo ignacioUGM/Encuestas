@@ -53,7 +53,7 @@
                                 <img id="imagen" class="img-responsive" src="image/encuesta.png">
 
                             </a>
-                    
+                            
                             <span id="tipo_encuesta" class="thumb-name"><p>{{$encuesta->nombre_tipo_encuesta}} </p> </span>                      
                             <span id="nombre_encuesta" class="thumb-code ng-binding"><p>{{$encuesta->nombre_encuesta}}</p></span>
                             <span id="created_at" class="thumb-name"><p>{{$encuesta->created_at}}</p></span>

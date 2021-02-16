@@ -18,8 +18,8 @@ class preguntasController extends Controller
 
     {
         // $preguntas=DB::table('encuestas','pregunta')->select('encuestas.id_encuesta','pregunta.nombre_pregunta','pregunta.descripcion_pregunta','pregunta.id_pregunta')->where('encuestas.id_encuesta', '=', 'pregunta.id_encuesta')->get();
-        $preguntas=pregunta::orderBy('id_pregunta','ASC')
-            ->select('id_encuesta', 'id_pregunta', 'nombre_pregunta', 'descripcion_pregunta')
+        $preguntas=pregunta::orderBy('id','ASC')
+            ->select('id_encuesta', 'id', 'nombre_pregunta', 'descripcion_pregunta')
 
             ->where('id_encuesta', '=', $request->id_encuesta)->get();
 
@@ -108,6 +108,7 @@ class preguntasController extends Controller
 
 
                 $preguntas = new pregunta();
+                $preguntas->id_encuesta = $request->id_encuesta;
                 $preguntas->nombre_pregunta = $request->nombre_pregunta;
                 $preguntas->descripcion_pregunta = $request->descripcion_pregunta;
                 $preguntas->updated_at = now();
@@ -127,13 +128,73 @@ class preguntasController extends Controller
     }
 
 
-    public function getencuestaId($id_encuesta){
+    public function getPreguntaId($id){
 
-        $preguntas=pregunta::find($id_encuesta);
+        $preguntas=pregunta::find($id);
         return response()->json($preguntas);
         
         
-        
         }
-        
+
+
+
+
+    public function editarPreguntas(Request $request){
+
+
+        try {
+
+            $preguntas = pregunta::find($request->id);
+            if ($preguntas == null) {
+
+              return ['message' => 'Pregunta no encontrada', 'type' => 'error'];
+
+            } else {
+
+            if (!isset($request->nombre_pregunta)) {
+              return ['message' => 'Debe ingresar el nombre de la pregunta', 'type' => 'error'];
+            } else
+            if (!isset($request->descripcion_pregunta)) {
+              return ['message' => 'Debe ingresar la descripcion de la pregunta', 'type' => 'error'];
+            }else{
+
+
+       
+            $preguntas->nombre_pregunta = $request->nombre_pregunta;
+            $preguntas->descripcion_pregunta = $request->descripcion_pregunta;
+            
+            $preguntas->created_at = now();
+            $preguntas->updated_at = now();
+            
+            $preguntas->save();
+            
+      // return ['message' => 'Usuario Actualizado', 'type' => 'success'];
+            return response()->json( $preguntas);
+            }
+            }
+          } catch (\Throwable $th) {
+
+            return response()->json( $th);
+          
+          }
 }
+
+
+
+
+public function deletePregunta($id){
+    $preguntas=pregunta::find($id);
+    $preguntas->delete();
+    return response()->json(['success'=>'la pregunta ha sido borrado correctamente']);
+    
+    
+    
+    
+    }
+
+
+
+    }
+        
+
+

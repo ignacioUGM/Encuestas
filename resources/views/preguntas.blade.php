@@ -1,6 +1,6 @@
 @include('layouts.app')
-@extends('modal.modalCrearPreguntas')
-
+@include('modal.modalCrearPreguntas')
+@include('modal.modalEditPregunta')
 <!DOCTYPE html>
 <html lang="en">
  
@@ -8,9 +8,9 @@
         <div class="container">
             <div class="panel panel-success">
                 <div class="panel-body">
-                    <h1 style="text-align: center">Nombre de Encuesta:</h1>  
+                    <h1 style="text-align: center">Nombre de Encuesta:{{$_GET['id_encuesta']}} </h1>  
 
-
+<input  id='id_encuesta' type="hidden" value="{{$_GET['id_encuesta']}}">
                 </div>
                 <div class="panel-heading">
                    
@@ -66,11 +66,11 @@
 @foreach ($preguntas as $pregunta)
 
 
-
+<tr id="sid{{$pregunta->id}}">
 <td> {{$pregunta->nombre_pregunta}} </td>
 <td> {{$pregunta->descripcion_pregunta}}</td>
-<td><button type="button" class="btn btn-success btn-sm"  data-toggle="modal" data-target="#nueva_pregunta"><i class='glyphicon glyphicon-edit'></i> </button>
-
+<td><button type="button" class="btn btn-success btn-sm"  data-toggle="modal" data-target="#edit_pregunta"><i class='glyphicon glyphicon-edit' onclick="recuperaridencuesta({{$pregunta->id}})"></i> </button>
+<button type='button' class="btn btn-danger btn-sm"  data-toggle="modal" data-target="" onclick="DeletePregunta({{$pregunta->id}})"> <i class='glyphicon glyphicon-trash'></i> </button>
 </td>
 </tr>
 
