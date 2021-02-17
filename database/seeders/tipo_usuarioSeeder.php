@@ -16,11 +16,20 @@ class tipo_usuarioSeeder extends Seeder
     {
         DB::table('tipo_usuario')->insert([
              
-            'nombre_usuario'=>'Administrador',
+            'nombre_usuario'=>'Evaluador',
             
 
   
   
           ]);
+          DB::table('tipo_usuario')->insert([
+             
+            'nombre_usuario'=>'Colaborador',
+            
+
+  
+  
+          ]);
+
     }
 }

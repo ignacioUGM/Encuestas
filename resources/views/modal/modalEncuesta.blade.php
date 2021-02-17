@@ -44,12 +44,8 @@
 
 				 <option value="{{$tipo_encuesta['id_tipo_encuesta']}}">{{$tipo_encuesta['nombre_tipo_encuesta']}} </option>
  		
-                   @endforeach     
-
-
-
-
-  
+				   @endforeach     
+				   
                  </select>
 				  
 				</div>

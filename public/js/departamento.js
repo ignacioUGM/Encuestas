@@ -40,10 +40,10 @@ function departamento(){
 
 // ----------------------------------------------------------------------------------------------------
 
-    function editaDepartamento(id){
+    function editaDepartamento(id2){
 
-      $.get('edit-departamento/'+id,function(departamento){
-       $("#id").val(departamento.id);
+      $.get('edit-departamento/'+id2,function(departamento){
+       $("#id").val(departamento.id2);
        $("#editNombreDepartamento").val(departamento.nombre_departamento);
        $("#editDescripcionDepartamento").val(departamento.descripcion_departamento);
        $("#editDepartamento").modal('show');
@@ -57,7 +57,7 @@ function departamento(){
    // ------------------------------------------------------------------------------------------------------------------
     
    function updateDepartamento(){
-      let id = $("#id").val();
+      let id = $("#id_departamento").val();
       let nombre_departamento = $("#editNombreDepartamento").val();
       let descripcion_departamento = $("#editDescripcionDepartamento").val();
       let _token = $("input[name=_token]").val();

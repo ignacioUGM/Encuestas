@@ -58,8 +58,8 @@
     <td> {{$users->name}}</td>
 	<td> {{$users->lastname}}</td>
     <td> {{$users->email}}</td>
-    <td> {{$users->gender}}</td>
-	<td> {{$users->type_user}}</td>
+    <td> {{$users->nombre_genero}}</td>
+	<td> {{$users->nombre_usuario}}</td>
     <td hidden>{{$users->password}}</td>
 	<td><button type="button" class="btn btn-success btn-sm"  data-toggle="modal" data-target="#editModal"  onclick="editUsuarios({{$users->id}})"><i class='glyphicon glyphicon-edit'></i> </button>
 	<button type="button" class="btn btn-success btn-sm" onclick="editContraseña({{$users->id}})"   data-toggle="modal" data-target="#contraseñaModal"><i class='glyphicon glyphicon-cog' ></i></button>

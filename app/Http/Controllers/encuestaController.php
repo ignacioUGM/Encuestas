@@ -26,7 +26,6 @@ class encuestaController extends Controller
             $encuestas = encuesta::orderBy('id_encuesta', 'ASC')->join('tipo_encuestas', 'tipo_encuestas.id_tipo_encuesta', '=', 'encuestas.tipo_encuesta', 'encuestas')
             ->select('encuestas.id_encuesta','tipo_encuestas.nombre_tipo_encuesta', 'encuestas.nombre_encuesta','encuestas.tipo_encuesta', 'encuestas.created_at')
             ->get();
-
               return view('encuesta',compact('encuestas','tipo_encuestas'));
               
         } catch (\Throwable $th) {
@@ -39,6 +38,8 @@ class encuestaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+     
+     
     public function create()
     {
   

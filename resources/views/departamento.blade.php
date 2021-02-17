@@ -52,7 +52,7 @@
 @foreach ($departamento as $departamento)
 
 
-<tr id="sid{{$departamento->id}}">
+<tr id="sid{{$departamento->id2}}">
 <td> {{$departamento->nombre_departamento}} </td>
 <td> {{$departamento->descripcion_departamento}}</td>
 <td> {{$departamento->created_at}}</td>

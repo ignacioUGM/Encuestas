@@ -53,6 +53,7 @@ Route::get('add-pregunta',[preguntasController::class,'addPregunta']);
 Route::get('recuperar-pregunta/{id}',[preguntasController::class,'getPreguntaId']);                                                  
 Route::put('update-pregunta',[preguntasController::class,'editarPreguntas']);
 Route::delete('delete-pregunta/{id}',[preguntasController::class,'deletePregunta']);
+
 //rutas encuestas
 Route::get('encuesta',[encuestaController::class,'index'])->name('encuesta');
 Route::get('add-encuesta',[encuestaController::class,'addEncuesta']);
@@ -60,8 +61,8 @@ Route::get('recuperar-encuesta',[encuestaController::class,'recuperarEncuesta'])
 
 
 //rutas de usuarios
-Route::get('usuarios',[ModelUserController::class, 'index'])->name('usuarios');
-Route::get('usuarios',[ModelUserController::class, 'buscar'])->name('usuarios');
+Route::get('usuarios',[ModelUserController::class,'index'])->name('usuarios');
+//Route::get('usuarios-buscar',[ModelUserController::class,'buscar'])->name('usuarios-buscar');
 Route::get('add-users',[ModelUserController::class,'addUsers']);
 Route::delete('delete-users/{id}',[ModelUserController::class,'deleteUsuario']);
 Route::get('edit-users/{id}',[ModelUserController::class,'getUsersId']);

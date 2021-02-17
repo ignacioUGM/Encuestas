@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Departamento;
+use App\Models\genero;
+use App\Models\typeUser;
 use App\Models\User;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -18,22 +22,40 @@ class ModelUserController extends Controller
      */
     const PAGINACION = 15;
 
-    public function index()
-    {
-      //  $usuarios = DB::table('users')->get();
-        //return view('usuarios', compact('usuarios'));
-           $usuarios= User::orderBy('id','DESC')->get();
-            return view('usuarios',compact('usuarios'));
-
-    }
-
-    public function buscar(Request $request)
+    public function index(Request $request)
     {
 
+      try {
         $buscarpor = $request->get('buscarpor');
-        $usuarios = DB::table('users')->where('name', 'like', '%' . $buscarpor . '%'  )->paginate($this::PAGINACION);
-        return view('usuarios', compact('usuarios', 'buscarpor'));
+
+if(isset($buscarpor)){
+  $buscarpor = $request->get('buscarpor');
+  $usuarios = DB::table('users')->where('name', 'like', '%' . $buscarpor . '%'  )->orWhere('lastname', 'like', '%' . $buscarpor . '%'  )->paginate($this::PAGINACION);
+}else{
+  $usuarios = User::orderBy('id','DESC')->join('genero', 'genero.id_genero', '=', 'users.gender', 'users')->join('tipo_usuario', 'tipo_usuario.id_tipo_usuario', '=' ,'users.type_user')->join('departamentos', 'departamentos.id', '=' ,'users.departamento_usuario')
+  ->select('users.lastname','genero.nombre_genero', 'users.name','users.gender', 'users.created_at', 'users.password', 'users.email', 'users.type_user', 'tipo_usuario.nombre_usuario', 'users.departamento_usuario', 'departamentos.nombre_departamento')
+  ->get();
+}
+     
+        $departamentos = Departamento::all();
+        $generos = genero::all();
+        $type_users = typeUser::all();
+
+     //   return $usuarios;
+         return view('usuarios',compact('usuarios','generos','buscarpor','type_users','departamentos'));
+
+      } catch (\Throwable $th) {
+        return print $th->getMessage();
+      }
     }
+
+    // public function buscar(Request $request)
+    // {
+
+    //     $buscarpor = $request->get('buscarpor');
+    //     $usuarios = DB::table('users')->where('name', 'like', '%' . $buscarpor . '%'  )->paginate($this::PAGINACION);
+    //     return view('usuarios',compact('usuarios', 'buscarpor'));
+    // }
 
 
 
@@ -87,15 +109,25 @@ class ModelUserController extends Controller
                 return ['message' => 'Contraseña debe Contener: Mayúsculas, números y mas de 8 carácteres', 'type' => 'error'];
               }
               
-               else {
+               else 
+                 if(!isset($request->gender)){
+                 return ['message'=> 'Debe ingresar el genero', 'type'=>'error'];
+                 } 
+                 else
+                 if(!isset($request->type_user)){
+                 return ['message'=> 'Debe ingresar el tipo de usuario', 'type'=>'error'];
+                
 
-          
+                 }else
+                  {
+           
+            
             $usuario = new User();
+            $usuario->gender = $request->gender;
+            $usuario->type_user = $request->type_user;
             $usuario->name = $request->name;
             $usuario->lastname = $request->lastname;
             $usuario->email = $request->email;
-            
-
             $usuario->password = bcrypt($request->password);
             $usuario->created_at = now();
             $usuario->updated_at = now();
@@ -343,6 +375,18 @@ public function type_user(){
 
 
 }
+
+
+// public function selectGenero(){
+     
+      
+    
+//   $usuario = genero::all();
+//  return view('usuarios', compact($usuario));
+
+
+//   }
+
 
 
 }

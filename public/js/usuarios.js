@@ -5,7 +5,11 @@ let name = $("#name").val();
 let lastname = $("#lastname").val();
 let email = $("#email").val();
 let password = $("#password").val();
+let gender = $("#select_genero").val();
+let type_user =$("#type_user").val();
+let departamento_usuario = $("#select_departamento").val();
 let _token = $("input[name=_token]").val();
+
 
 const data = {      
    id:id,
@@ -13,6 +17,9 @@ const data = {
    lastname:lastname,
    email:email,
    password:password,
+   gender:gender,
+   type_user:type_user,
+   departamento_usuario:departamento_usuario,
    _token:_token
    
 }
@@ -29,7 +36,7 @@ $.ajax(
    
      if(response){
       console.log(response)
-      $("#userTable tbody").prepend('<tr><td>'+ response.id +'</td><td>'+ response.name +'</td><td>'+ response.lastname +'</td><td>'+ response.email +'</td><td>'+ response.password +'</td></tr>');
+      $("#userTable tbody").prepend('<tr><td>'+ response.id +'</td><td>'+ response.name +'</td><td>'+ response.lastname +'</td><td>'+ response.email +'</td><td>'+ response.password +'</td><td>'+ response.gender +'</td><td>'+ response.type_user +'</td></tr>');
       $("#message").html(response.message);
 
 	    $("#userForm")[0].reset();

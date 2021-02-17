@@ -38,18 +38,7 @@ class usuarioSeeder extends Seeder
    
   
           ]);
-          DB::table('users')->insert([
-         
-            'name'=>'Ignacio',
-            'email'=>'ignacio.robles.rodriguez@ugm.cl',
-            'password'=>bcrypt('Nrobles0301'),
-            'lastname'=>'Rodriguez',
-            'gender'=>'1',
-            'type_user'=>'1'
-
-   
   
-          ]);
           DB::table('users')->insert([
          
             'name'=>'Ignacia',
@@ -57,7 +46,7 @@ class usuarioSeeder extends Seeder
             'password'=>bcrypt('Nrobles0301'),
             'lastname'=>'Robles',
             'gender'=>'2',
-            'type_user'=>'1'
+            'type_user'=>'2'
 
    
   
