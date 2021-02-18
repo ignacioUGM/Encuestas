@@ -40,12 +40,17 @@ function departamento(){
 
 // ----------------------------------------------------------------------------------------------------
 
-    function editaDepartamento(id2){
+    function editaDepartamento(id){
 
-      $.get('edit-departamento/'+id2,function(departamento){
-       $("#id").val(departamento.id2);
-       $("#editNombreDepartamento").val(departamento.nombre_departamento);
-       $("#editDescripcionDepartamento").val(departamento.descripcion_departamento);
+      console.log('editaDepartamento :',id)
+
+      $.get('edit-departamento/'+id,function(departamento){
+       $("#id_departamentos").val(departamento[0].id_departamento);
+
+    //   console.log('id prueba :',departamento)
+
+       $("#editNombreDepartamento").val(departamento[0].nombre_departamento);
+       $("#editDescripcionDepartamento").val(departamento[0].descripcion_departamento);
        $("#editDepartamento").modal('show');
        
     
@@ -57,7 +62,7 @@ function departamento(){
    // ------------------------------------------------------------------------------------------------------------------
     
    function updateDepartamento(){
-      let id = $("#id_departamento").val();
+      let id = $("#id_departamentos").val();
       let nombre_departamento = $("#editNombreDepartamento").val();
       let descripcion_departamento = $("#editDescripcionDepartamento").val();
       let _token = $("input[name=_token]").val();
@@ -78,12 +83,12 @@ function departamento(){
          data,
          success:function(response){
 
-            console.log(data)
-
+            console.log("data",data)
+          
             if(response){
                console.log(response)
          $('#sid' + response.id +' td:nth-child(1)').text(response.nombre_departamento);
-         $('#sid' + response.id +' td:nth-child(2)').text(response.descripcion_departamento);
+         $('#sid' + response.id+' td:nth-child(2)').text(response.descripcion_departamento);
          $("#editDepartamento").modal('show');
          $("#guardarEditDepartamento")[0].reset();
          }
@@ -109,6 +114,7 @@ function departamento(){
             },
                 success:function(response)
                 {
+                   console.log(response)
                   $("#sid"+id).remove();
 
                 } 

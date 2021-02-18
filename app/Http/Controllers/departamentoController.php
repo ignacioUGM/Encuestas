@@ -6,7 +6,7 @@ namespace App\Http\Controllers;
 use App\Models\Departamento;
 
 use Illuminate\Http\Request;
-use PhpParser\Node\Stmt\TryCatch;
+
 
 class departamentoController extends Controller
 {
@@ -17,8 +17,8 @@ class departamentoController extends Controller
      */
     public function index()
     {
-        $departamento= Departamento::orderBy('id2','ASC')->get();
-        return view('departamento',compact('departamento'));
+        $departamentos = Departamento::orderBy('id_departamento', 'ASC')->get();
+        return view('departamento', compact('departamentos'));
     }
 
     /**
@@ -27,46 +27,40 @@ class departamentoController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-     public function agregarDepartamento(Request $request ){
-      
+    public function agregarDepartamento(Request $request)
+    {
+
         try {
-             
+
             if (!isset($request->nombre_departamento)) {
                 return ['message' => 'error... Debe ingresar el nombre del departamento', 'type' => 'error'];
-            }else
+            } else
             
             if (!isset($request->descripcion_departamento)) {
                 return ['message' => 'error... Debe ingresar la descripcion del departamento', 'type' => 'error'];
-              
+            } else {
 
+
+
+
+
+
+                $departamentos = new Departamento();
+                $departamentos->nombre_departamento = $request->nombre_departamento;
+                $departamentos->descripcion_departamento = $request->descripcion_departamento;
+
+                $departamentos->created_at = now();
+
+
+                $departamentos->save();
             }
-            
-            else {
 
-          
-
-
-
-
-            $departamento = new Departamento();
-            $departamento->nombre_departamento = $request->nombre_departamento;
-            $departamento->descripcion_departamento = $request->descripcion_departamento;
-     
-            $departamento->created_at = now();
-           
-               
-            $departamento->save();
-               }
-               
-            return response()->json($departamento);
-
+            return response()->json($departamentos);
         } catch (\Throwable $th) {
-            
+
             return response()->json($th);
         }
-
-
-     }
+    }
 
 
     public function create()
@@ -125,60 +119,63 @@ class departamentoController extends Controller
      * @param  \App\Models\Departamento $departamento
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Departamento $departamento)
+    public function destroy(Departamento $departamentos)
     {
         //
     }
 
 
-public function getDepartamentoId($id){
+    public function getDepartamentoId($id_departamento)
+    {
 
-    $departamento=Departamento::find($id);
-    return response()->json($departamento);
-    
-    
-    
+        $departamentos = Departamento::where('id_departamento', '=', $id_departamento)->get();
+
+        // return $departamentos;
+
+        return response()->json($departamentos);
     }
 
-    public function updateDepartamento(Request $request){
+    public function updateDepartamento(Request $request)
+    {
         try {
-          $departamento = Departamento::find($request->id);
-          $departamento->nombre_departamento = ($request->nombre_departamento);
-          $departamento->descripcion_departamento = $request->descripcion_departamento;
-          
-          $departamento->created_at = now();
-          $departamento->updated_at = now();
-          
-          $departamento->save();
 
-          return response()->json( $departamento);
-          
+            if (!isset($request->nombre_departamento)) {
+                return 'ingrese nombre departamento';
+            } else if (!isset($request->descripcion_departamento)) {
+                return 'ingrese descripcion departamento';
+            }
+            $departamentos = Departamento::where('id_departamento', '=', $request->id_departamento)->first();
+            /*
+            ->update([
+                'nombre_departamento'=>  $request->nombre_departamento,
+                'descripcion_departamento'=> $request->descripcion_departamento,
+                'created_at'=> now(),
+                'updated_at'=> now(),
+             ]);
+*/
 
+            $departamentos->nombre_departamento = $request->nombre_departamento;
+            $departamentos->descripcion_departamento = $request->descripcion_departamento;
+
+            $departamentos->created_at = now();
+            $departamentos->updated_at = now();
+
+            //  return response()->json($departamentos);
+         //   return $request;
+            $departamentos->save();
+
+            return 'Departamento actualizado';
         } catch (\Throwable $th) {
 
-          return response()->json( $th);
-
+            return 'error :' . $th->getMessage();
+            //  return response()->json($th);
         }
-    
-      
-
-
-
-
-}
-
-public function deleteDepartamento($id){
-    $usuario=Departamento::find($id);
-    $usuario->delete();
-    return response()->json(['success'=>'el departamento ha sido borrado correctamente']);
-    
-    
-    
-    
     }
 
-
-
-
-
+    public function deleteDepartamento($id_departamento)
+    {
+        $usuario = Departamento::where('id_departamento', '=', $id_departamento);
+        $usuario->delete();
+        return response()->json(['success' => 'el departamento ha sido borrado correctamente']);
+    }
 }

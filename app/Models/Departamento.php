@@ -10,10 +10,10 @@ class Departamento extends Model
 {
     use HasFactory, Notifiable;
 
-
+    protected $table = 'departamentos';
 
     protected $fillable = [
-        
+      
         'nombre_departamento',
         'descripcion_departamento',
         'created_at',

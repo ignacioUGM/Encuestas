@@ -65,18 +65,18 @@ Route::get('usuarios',[ModelUserController::class,'index'])->name('usuarios');
 //Route::get('usuarios-buscar',[ModelUserController::class,'buscar'])->name('usuarios-buscar');
 Route::get('add-users',[ModelUserController::class,'addUsers']);
 Route::delete('delete-users/{id}',[ModelUserController::class,'deleteUsuario']);
-Route::get('edit-users/{id}',[ModelUserController::class,'getUsersId']);
+Route::get('edit-users/{id2}',[ModelUserController::class,'getUsersId']);
 Route::put('update-users',[ModelUserController::class,'updateUsers']);
-Route::get('edit-contraseña/{id}',[ModelUserController::class,'getContraseñaId']);
+// Route::get('edit-contraseña/{id}',[ModelUserController::class,'getContraseñaId']);
 Route::put('change-password',[ModelUserController::class,'changePass']);
 
 
 //ruta del departamento
 Route::get('departamento',[departamentoController::class, 'index'])->name('departamento');
 Route::get('add-departamento',[departamentoController::class,'agregarDepartamento']);
-Route::get('edit-departamento/{id}',[departamentoController::class,'getDepartamentoId']);
+Route::get('edit-departamento/{id_departamento}',[departamentoController::class,'getDepartamentoId']);
 Route::put('update-departamento',[departamentoController::class,'updateDepartamento']);
-Route::delete('delete-departamento/{id}',[departamentoController::class,'deleteDepartamento']);
+Route::delete('delete-departamento/{id_departamento}',[departamentoController::class,'deleteDepartamento']);
 
 //rutas del auth
 Auth::routes();

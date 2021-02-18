@@ -22,12 +22,12 @@
 		
 		 <div class="alert"  role="alert">
 		 <label id='message'>	
-</div>
+        </div>
 		  </label> 
 			
 
 
-	  </div>
+	    </div>
 			
 
 

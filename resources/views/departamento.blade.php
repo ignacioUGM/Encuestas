@@ -40,24 +40,27 @@
 				<table id="departamentoTable" class="table table-striped">
 				<thead>
 			   <tr>
+
 				<th>Nombre</th>
 				<th>Descripcion</th>
 				<th>Agregado</th>
+			
 			
 			   
 </tr>
 </thead>
 <tbody>
 
-@foreach ($departamento as $departamento)
+@foreach ($departamentos as $departamento)
 
 
-<tr id="sid{{$departamento->id2}}">
+<tr id="sid{{$departamento->id_departamento}}">
 <td> {{$departamento->nombre_departamento}} </td>
 <td> {{$departamento->descripcion_departamento}}</td>
 <td> {{$departamento->created_at}}</td>
-<td><button type='button' class="btn btn-success btn-sm"  data-toggle="modal" data-target="#editDepartamento" onclick="editaDepartamento({{$departamento->id}})"><i class='glyphicon glyphicon-edit'></i></button>
-<button type='button' class="btn btn-danger btn-sm"  data-toggle="modal" data-target="" onclick="DeleteDepartamento({{$departamento->id}})"> <i class='glyphicon glyphicon-trash'></i> </button></td>
+
+<td><button type='button' class="btn btn-success btn-sm"  data-toggle="modal" data-target="#editDepartamento" onclick="editaDepartamento({{$departamento->id_departamento}})"><i class='glyphicon glyphicon-edit'></i></button>
+<button type='button' class="btn btn-danger btn-sm"  data-toggle="modal" data-target="" onclick="DeleteDepartamento({{$departamento->id_departamento}})"> <i class='glyphicon glyphicon-trash'></i> </button></td>
 
 
 </tr>

@@ -14,7 +14,7 @@ class Departamento extends Migration
     public function up()
     {
         Schema::create('departamentos',function(Blueprint $table){
-       $table->id('id2');
+       $table->id("id_departamento");
        $table->string('nombre_departamento')->index();
        $table->text('descripcion_departamento');
        $table->timestamps('');
