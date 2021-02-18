@@ -32,7 +32,7 @@ if(isset($buscarpor)){
   $buscarpor = $request->get('buscarpor');
   $usuarios = DB::table('users')->where('name', 'like', '%' . $buscarpor . '%'  )->orWhere('lastname', 'like', '%' . $buscarpor . '%'  )->paginate($this::PAGINACION);
 }else{
-  $usuarios = User::orderBy('id','DESC')->join('genero', 'genero.id_genero', '=', 'users.gender', 'users')->join('tipo_usuario', 'tipo_usuario.id_tipo_usuario', '=' ,'users.type_user')->join('departamentos', 'departamentos.id', '=' ,'users.departamento_usuario')
+  $usuarios = User::orderBy('users.id','DESC')->join('genero', 'genero.id_genero', '=', 'users.gender', 'users')->join('tipo_usuario', 'tipo_usuario.id_tipo_usuario', '=' ,'users.type_user')->join('departamentos', 'departamentos.id', '=' ,'users.departamento_usuario')
   ->select('users.lastname','genero.nombre_genero', 'users.name','users.gender', 'users.created_at', 'users.password', 'users.email', 'users.type_user', 'tipo_usuario.nombre_usuario', 'users.departamento_usuario', 'departamentos.nombre_departamento')
   ->get();
 }
