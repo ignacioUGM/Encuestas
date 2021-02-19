@@ -16,7 +16,7 @@
 			<form class="form-horizontal" id="guardarEditDepartamento" name="guardarEditdepartamento">
 			@csrf
 			<!-- <div id="resultados_ajax"></div> -->
-			<input type="text" id="id_departamentos" />
+			<input type="hidden" id="id_departamentos" />
 			  <div class="form-group">
 				<label for="nombre" class="col-sm-3 control-label">Nombre </label>
 				<div class="col-sm-8">

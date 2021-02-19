@@ -20,7 +20,7 @@ class ModelUserController extends Controller
      * @return \Illuminate\Http\Response
      * 
      */
-    const PAGINACION = 15;
+    const PAGINACION = 10;
 
     public function index(Request $request)
     {
@@ -30,19 +30,28 @@ class ModelUserController extends Controller
 
 if(isset($buscarpor)){
   $buscarpor = $request->get('buscarpor');
-  $usuarios = DB::table('users')->where('name', 'like', '%' . $buscarpor . '%'  )->orWhere('lastname', 'like', '%' . $buscarpor . '%'  )->paginate($this::PAGINACION);
+  $usuarios = DB::table('users')->join('genero', 'genero.id_genero', '=', 'users.gender')
+  ->join('tipo_usuario', 'tipo_usuario.id_tipo_usuario', '=' ,'users.type_user')
+  ->where('name', 'like', '%' . $buscarpor . '%'  )->orWhere('lastname', 'like', '%' . $buscarpor . '%'  )->paginate($this::PAGINACION);
 }else{
-  $usuarios = User::orderBy('users.id','DESC')->join('genero', 'genero.id_genero', '=', 'users.gender', 'users')->join('tipo_usuario', 'tipo_usuario.id_tipo_usuario', '=' ,'users.type_user')->join('departamentos', 'departamentos.id', '=' ,'users.departamento_usuario')
-  ->select('users.lastname','genero.nombre_genero', 'users.name','users.gender', 'users.created_at', 'users.password', 'users.email', 'users.type_user', 'tipo_usuario.nombre_usuario', 'users.departamento_usuario', 'departamentos.nombre_departamento')
-  ->get();
-}
-     
-        $departamentos = Departamento::all();
-        $generos = genero::all();
-        $type_users = typeUser::all();
 
+      
+
+
+  $usuarios = User::orderBy('users.id','ASC')
+  ->join('departamentos', 'departamentos.id', '=', 'users.departamento_usuario')
+  ->join('genero', 'genero.id_genero', '=', 'users.gender')
+  ->join('tipo_usuario', 'tipo_usuario.id_tipo_usuario', '=' ,'users.type_user')
+  ->select('users.id','users.lastname', 'users.name', 'users.created_at', 'users.password', 'users.email','users.gender' ,'genero.nombre_genero', 'users.type_user', 'tipo_usuario.nombre_usuario','departamentos.nombre_departamento' )
+  ->get();
+  
+  
+}
+$departamentos = Departamento::all();
+$generos = genero::all();
+$type_users = typeUser::all();
      //   return $usuarios;
-         return view('usuarios',compact('usuarios','generos','buscarpor','type_users','departamentos'));
+         return view('usuarios',compact('usuarios','generos','buscarpor','type_users', 'departamentos'));
 
       } catch (\Throwable $th) {
         return print $th->getMessage();
@@ -116,13 +125,11 @@ if(isset($buscarpor)){
                  else
                  if(!isset($request->type_user)){
                  return ['message'=> 'Debe ingresar el tipo de usuario', 'type'=>'error'];
-                
-
-                 }else
-                  {
+                 }
            
             
             $usuario = new User();
+            $usuario->departamento_usuario = $request->departamento_usuario;
             $usuario->gender = $request->gender;
             $usuario->type_user = $request->type_user;
             $usuario->name = $request->name;
@@ -131,6 +138,7 @@ if(isset($buscarpor)){
             $usuario->password = bcrypt($request->password);
             $usuario->created_at = now();
             $usuario->updated_at = now();
+
             
             $usuario->save();
 
@@ -141,7 +149,7 @@ if(isset($buscarpor)){
            //return response()->json(['success'=>'el usuario ha sido registrado correctamente']);
           // return view('usuarios',compact('usuarios'));
            
-      }
+      
 
       } catch (\Throwable $th) {
             return response()->json($th);
@@ -280,14 +288,14 @@ public function updateUsers(Request $request){
 
                 return ['message' => 'Usuario no encontrado', 'type' => 'error'];
 
-              } else {
+              } else 
 
               if (!isset($request->name)) {
                 return ['message' => 'Debe ingresar nombre', 'type' => 'error'];
               } else
               if (!isset($request->lastname)) {
                 return ['message' => 'Debe ingresar apellido', 'type' => 'error'];
-              }else{
+              }
 
 
          
@@ -301,8 +309,8 @@ public function updateUsers(Request $request){
               
         // return ['message' => 'Usuario Actualizado', 'type' => 'success'];
               return response()->json( $usuario);
-              }
-              }
+              
+              
             } catch (\Throwable $th) {
 
               return response()->json( $th);
@@ -330,23 +338,25 @@ public function changePass(Request $request)
     if ($users == null) {
   
       return ['message' => 'Usuario no encontrado', 'type' => 'error'];
-    } else {
+    } else 
   
       if (!isset($request->password)) {
         return ['message' => 'Debe ingresar contraseña', 'type' => 'error'];
-      } elseif (!preg_match('/^(?=.*\d)(?=.*[A-Za-z])[0-9A-Za-z!@#$%]{8,12}$/', $request->password)) {
+      } else
+      if (!preg_match('/^(?=.*\d)(?=.*[A-Za-z])[0-9A-Za-z!@#$%]{8,12}$/', $request->password)) {
         return ['message' => 'Contraseña debe Contener: Mayúsculas, números y mas de 8 carácteres', 'type' => 'error'];
-      } elseif ($request->password != $request->confpassword) {
+      } else
+      if ($request->password != $request->confpassword) {
         return ['message' => 'Contraseñas no coinciden', 'type' => 'error'];
-      } else {
+      } 
 
         $users->password  = bcrypt($request->password);
         $users->save();
 
         return response()->json( $users);
         // return ['message' => 'Contraseña Actualizada', 'type' => 'success'];
-      }
-    }
+      
+    
   } catch (\Throwable $th) {
     return response()->json( $th);
   }

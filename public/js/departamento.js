@@ -42,15 +42,10 @@ function departamento(){
 
     function editaDepartamento(id){
 
-      console.log('editaDepartamento :',id)
-
       $.get('edit-departamento/'+id,function(departamento){
-       $("#id_departamentos").val(departamento[0].id_departamento);
-
-    //   console.log('id prueba :',departamento)
-
-       $("#editNombreDepartamento").val(departamento[0].nombre_departamento);
-       $("#editDescripcionDepartamento").val(departamento[0].descripcion_departamento);
+       $("#id_departamentos").val(departamento.id);
+       $("#editNombreDepartamento").val(departamento.nombre_departamento);
+       $("#editDescripcionDepartamento").val(departamento.descripcion_departamento);
        $("#editDepartamento").modal('show');
        
     
@@ -88,7 +83,7 @@ function departamento(){
             if(response){
                console.log(response)
          $('#sid' + response.id +' td:nth-child(1)').text(response.nombre_departamento);
-         $('#sid' + response.id+' td:nth-child(2)').text(response.descripcion_departamento);
+         $('#sid' + response.id +' td:nth-child(2)').text(response.descripcion_departamento);
          $("#editDepartamento").modal('show');
          $("#guardarEditDepartamento")[0].reset();
          }

@@ -19,9 +19,9 @@ class preguntasController extends Controller
     {
         // $preguntas=DB::table('encuestas','pregunta')->select('encuestas.id_encuesta','pregunta.nombre_pregunta','pregunta.descripcion_pregunta','pregunta.id_pregunta')->where('encuestas.id_encuesta', '=', 'pregunta.id_encuesta')->get();
         $preguntas=pregunta::orderBy('id','ASC')
-            ->select('id_encuesta', 'id', 'nombre_pregunta', 'descripcion_pregunta')
+            ->select('id_encuesta', 'id', 'nombre_pregunta', 'descripcion_pregunta' )
 
-            ->where('id_encuesta', '=', $request->id_encuesta)->get();
+            ->where('id_encuesta','=', $request->id_encuesta)->get();
 
         return view('preguntas', compact('preguntas'));
         // ->get();
@@ -104,7 +104,7 @@ class preguntasController extends Controller
             
             if (!isset($request->descripcion_pregunta)) {
                 return ['message' => 'error... Debe ingresar la descripcion del departamento', 'type' => 'error'];
-            } else {
+            } 
 
 
                 $preguntas = new pregunta();
@@ -118,7 +118,7 @@ class preguntasController extends Controller
             //       return $preguntas;
 
                   $preguntas->save();
-            }
+            
 
             return response()->json($preguntas);
         } catch (\Throwable $th) {
@@ -149,15 +149,14 @@ class preguntasController extends Controller
 
               return ['message' => 'Pregunta no encontrada', 'type' => 'error'];
 
-            } else {
+            } else 
 
             if (!isset($request->nombre_pregunta)) {
               return ['message' => 'Debe ingresar el nombre de la pregunta', 'type' => 'error'];
             } else
             if (!isset($request->descripcion_pregunta)) {
               return ['message' => 'Debe ingresar la descripcion de la pregunta', 'type' => 'error'];
-            }else{
-
+            }
 
        
             $preguntas->nombre_pregunta = $request->nombre_pregunta;
@@ -170,8 +169,8 @@ class preguntasController extends Controller
             
       // return ['message' => 'Usuario Actualizado', 'type' => 'success'];
             return response()->json( $preguntas);
-            }
-            }
+            
+            
           } catch (\Throwable $th) {
 
             return response()->json( $th);

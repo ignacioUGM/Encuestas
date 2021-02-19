@@ -122,7 +122,7 @@ class encuestaController extends Controller
 
 
 
-                } else{
+                } 
 
 
             $encuesta = new encuesta();
@@ -136,7 +136,7 @@ class encuestaController extends Controller
         //    return $request;
 
            return response()->json($encuesta);
-            }
+            
         } catch (\Throwable $th) {
             
             return response()->json($th);

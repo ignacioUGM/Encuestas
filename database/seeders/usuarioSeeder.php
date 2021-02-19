@@ -21,7 +21,8 @@ class usuarioSeeder extends Seeder
             'password'=>bcrypt('12345678'),
             'lastname'=>'Oyarzu',
             'gender'=>'1',
-            'type_user'=>'1'
+            'type_user'=>'1',
+            'departamento_usuario'=>'1'
 
    
   
@@ -33,7 +34,8 @@ class usuarioSeeder extends Seeder
             'password'=>bcrypt('Nrobles0301'),
             'lastname'=>'Robles',
             'gender'=>'1',
-            'type_user'=>'1'
+            'type_user'=>'1',
+            'departamento_usuario'=>'1'
 
    
   
@@ -46,8 +48,8 @@ class usuarioSeeder extends Seeder
             'password'=>bcrypt('Nrobles0301'),
             'lastname'=>'Robles',
             'gender'=>'2',
-            'type_user'=>'2'
-
+            'type_user'=>'2',
+            'departamento_usuario'=>'1'
    
   
           ]);
