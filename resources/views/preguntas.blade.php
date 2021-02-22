@@ -1,6 +1,7 @@
 @include('layouts.app')
 @include('modal.modalCrearPreguntas')
 @include('modal.modalEditPregunta')
+@include('modal.modalAsignarEncuesta')
 <!DOCTYPE html>
 <html lang="en">
  
@@ -24,7 +25,7 @@
 
                             <!-- <button type='button' class="btn btn-primary" data-toggle="modal" data-target="#asignar_encuesta_general"><span class="glyphicon glyphicon-share" ></span> Asignar Encuesta </button> -->
                      
-                            <button type='button' class="btn btn-primary" data-toggle="modal" data-target="#asignar_encuesta_jefatura" onclick="recuperarUsuarioDepartamento(0)"><span class="glyphicon glyphicon-share" ></span> Asignar Encuesta </button>
+                            <button type='button' class="btn btn-primary" data-toggle="modal" data-target="#modalAsignar" ><span class="glyphicon glyphicon-share" ></span> Asignar Encuesta </button>
                      
                     </div>
                     

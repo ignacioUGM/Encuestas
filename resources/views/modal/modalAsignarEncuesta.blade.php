@@ -17,16 +17,16 @@
 	  </div>
 
 
-
-      <div class="form-group">
+	  <div class="form-group">
 				<label for="descripcion">Departamento</label>
 				<select name="select_departamento" id="select_departamento" class="form-select form-select-sm" aria-label=".form-select-sm example">
 				 <option value="">--escoga el departamento</option>
-				 @foreach ($departamentos as $departamento)
-				 <option value="{{$departamento['id']}}">{{$departamento['nombre_departamento']}} </option>
+				 @foreach ($preguntas as $pregunta)
+				 <option value="{{$pregunta['id']}}">{{$pregunta['nombre_departamento']}} </option>
  		      @endforeach
 			   </select>
 			  </div>
+
 
       
 
@@ -35,7 +35,7 @@
 
 
 	  <div class="modal-footer">
-        <button type="button" class="btn btn-success" onclick="CambiarContraseña()">Confirmar</button>
+        <button type="button" class="btn btn-success" >Confirmar</button>
 		<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
 	  </div>
 	  </form>

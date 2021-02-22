@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Departamento;
 use App\Models\encuesta;
 use App\Models\pregunta;
 use Illuminate\Http\Request;
@@ -190,6 +191,7 @@ public function deletePregunta($id){
     
     
     }
+
 
 
 

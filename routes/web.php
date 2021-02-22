@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\asignarEncuesta;
 use App\Http\Controllers\departamentoController;
 use App\Http\Controllers\encuestaController;
 use Illuminate\Support\Facades\Route;
@@ -30,9 +31,6 @@ Route::get('/', function () {
 //historial
 
 
-Route::get('preguntas', function(){
-    return view('preguntas');
-})->name('preguntas');
 
 Route::get('historial', function(){
     return view('historial');
@@ -46,6 +44,10 @@ Route::get('notificaciones', function(){
 })->name('notificaciones');
 
 
+//asiginar
+
+
+
 
 //rutas preguntas
 Route::get('preguntas',[preguntasController::class,'index'])->name('preguntas');
@@ -53,6 +55,9 @@ Route::get('add-pregunta',[preguntasController::class,'addPregunta']);
 Route::get('recuperar-pregunta/{id}',[preguntasController::class,'getPreguntaId']);                                                  
 Route::put('update-pregunta',[preguntasController::class,'editarPreguntas']);
 Route::delete('delete-pregunta/{id}',[preguntasController::class,'deletePregunta']);
+Route::get('asignar',)
+
+
 
 //rutas encuestas
 Route::get('encuesta',[encuestaController::class,'index'])->name('encuesta');
