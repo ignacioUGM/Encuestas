@@ -3,11 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Departamento;
-use App\Models\encuesta;
 use App\Models\pregunta;
+use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-
 class preguntasController extends Controller
 {
     /**
@@ -18,16 +16,37 @@ class preguntasController extends Controller
     public function index(Request $request)
 
     {
-        // $preguntas=DB::table('encuestas','pregunta')->select('encuestas.id_encuesta','pregunta.nombre_pregunta','pregunta.descripcion_pregunta','pregunta.id_pregunta')->where('encuestas.id_encuesta', '=', 'pregunta.id_encuesta')->get();
-        $preguntas=pregunta::orderBy('id','ASC')
+     
+
+         try {
+           
+
+
+            $preguntas=pregunta::orderBy('id','ASC')
             ->select('id_encuesta', 'id', 'nombre_pregunta', 'descripcion_pregunta' )
 
             ->where('id_encuesta','=', $request->id_encuesta)->get();
+                      
+            $departamentos = Departamento::all();
 
-        return view('preguntas', compact('preguntas'));
-        // ->get();
-        // return view('preguntas', compact('pregunta'));
+
+        return view('preguntas', compact('preguntas','departamentos'));
+
+         } catch (\Throwable $th) {
+             
+            return print $th->getMessage();
+
+
+
+         }
+        
+
+      
     }
+
+
+
+    
 
     /**
      * Show the form for creating a new resource.
@@ -191,6 +210,16 @@ public function deletePregunta($id){
     
     
     }
+
+    public function asignarEncuesta(){
+
+
+
+
+
+    }
+
+    
 
 
 

@@ -198,3 +198,33 @@ function editContraseña(id){
 });
 
    }
+
+
+
+   function recuperarIdDepartamento($id_departamento){
+   
+    $.ajax({
+    
+      
+
+
+
+
+
+
+
+
+
+
+
+    })
+
+
+
+
+
+
+
+
+
+   }

@@ -85,7 +85,7 @@ function departamento(){
          $('#sid' + response.id +' td:nth-child(1)').text(response.nombre_departamento);
          $('#sid' + response.id +' td:nth-child(2)').text(response.descripcion_departamento);
          $("#editDepartamento").modal('show');
-         $("#guardarEditDepartamento")[0].reset();
+         $("#guardarEditDepartamento");
          }
       }
    })

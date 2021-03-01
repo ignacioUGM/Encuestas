@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\asignarEncuesta;
+use App\Http\Controllers\asignarEncuestaController;
 use App\Http\Controllers\departamentoController;
 use App\Http\Controllers\encuestaController;
 use Illuminate\Support\Facades\Route;
@@ -44,8 +45,12 @@ Route::get('notificaciones', function(){
 })->name('notificaciones');
 
 
-//asiginar
 
+
+
+
+//asiginar
+Route::get('usuarios2',[asignarEncuestaController::class,'index']);
 
 
 
@@ -55,7 +60,7 @@ Route::get('add-pregunta',[preguntasController::class,'addPregunta']);
 Route::get('recuperar-pregunta/{id}',[preguntasController::class,'getPreguntaId']);                                                  
 Route::put('update-pregunta',[preguntasController::class,'editarPreguntas']);
 Route::delete('delete-pregunta/{id}',[preguntasController::class,'deletePregunta']);
-Route::get('asignar',)
+
 
 
 

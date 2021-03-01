@@ -50,7 +50,7 @@ if(isset($buscarpor)){
 $departamentos = Departamento::all();
 $generos = genero::all();
 $type_users = typeUser::all();
-     //   return $usuarios;
+     
          return view('usuarios',compact('usuarios','generos','buscarpor','type_users', 'departamentos'));
 
       } catch (\Throwable $th) {
