@@ -19,9 +19,8 @@ class preguntasController extends Controller
      
 
          try {
-           
-
-
+        
+            
             $preguntas=pregunta::orderBy('id','ASC')
             ->select('id_encuesta', 'id', 'nombre_pregunta', 'descripcion_pregunta' )
 
@@ -30,7 +29,7 @@ class preguntasController extends Controller
             $departamentos = Departamento::all();
 
 
-        return view('preguntas', compact('preguntas','departamentos'));
+        return view('preguntas',compact('preguntas','departamentos'));
 
          } catch (\Throwable $th) {
              
@@ -211,10 +210,13 @@ public function deletePregunta($id){
     
     }
 
-    public function asignarEncuesta(){
+    public function asignarEncuesta(Request $request){
+        
+    $usuarios2 = Departamento::OrderBy('id','ASC')->join( 'users','users.departamento_usuario' ,'=' ,'departamentos.id')
+    ->join('genero', 'nombre_genero', '=', 'users.gender')
+    ->select('users.id', 'name', 'lastname', 'nombre_genero', 'nombre_departamento')->where($request->departamentos)->get();
 
-
-
+    return view('usuarios2', compact('usuarios2'));
 
 
     }

@@ -1,46 +1,32 @@
 function asignarU(){
 
 
-  let usuario_departamento = $('#select_departamentoAsignar').val();
+  let id = $('#select_departamentoAsignar').val();
 
 
 
   const data = {
    
- usuario_departamento : usuario_departamento
+   id:id
 
   }
   
 
   $.ajax({
 
-   url = 'preguntas',
+   url = 'usuarios2',
    method = 'GET',
    data, 
    success:function(response){
 
-if(response){
-
-  $('#asignarUserTable').get();
-  return view ('usuario_encuestas');
 
 
 
-
-
-}
-
-
-
-   } 
+   }
 
 
 
-
-
-
-
-  });
+  })
 
 
 

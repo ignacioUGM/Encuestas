@@ -37,12 +37,12 @@
 
 
 	  <div class="modal-footer">
-        <button type="button" class="btn btn-success" onclick="asignarU({{$departamentos}})">Confirmar</button>
+        <button type="button" class="btn btn-success" onclick="{{$departamentos}}">Confirmar</button>
 		<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
 	  </div>	
 	  </form>
 
-
+	  
 		
 	
       </div>

@@ -44,7 +44,9 @@
                         <th>Apellido</th>
                         <th>Correo electronico</th>
                         <th>Genero</th>
-                        <th>Tipo Usuario</th>
+						<th>Tipo Usuario</th>
+						<th>Botones</th>
+					
                        
     </tr>
 	</thead>
@@ -64,7 +66,8 @@
 	<td><button type="button" class="btn btn-success btn-sm"  data-toggle="modal" data-target="#editModal"  onclick="editUsuarios({{$users->id}})"><i class='glyphicon glyphicon-edit'></i> </button>
 	<button type="button" class="btn btn-success btn-sm" onclick="editContraseña({{$users->id}})"   data-toggle="modal" data-target="#contraseñaModal"><i class='glyphicon glyphicon-cog' ></i></button>
 	<button type="button" class="btn btn-success btn-sm" onclick="DeleteUsuario({{$users->id}})">  <i class='glyphicon glyphicon-trash'></i></button>
-    </td>
+	</td>
+
 	</tr>
 	
 	@endforeach

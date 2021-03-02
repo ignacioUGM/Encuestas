@@ -50,7 +50,7 @@ Route::get('notificaciones', function(){
 
 
 //asiginar
-Route::get('usuarios2',[asignarEncuestaController::class,'index']);
+Route::get('usuarios2',[preguntasController::class,'asignarEncuesta']);
 
 
 
