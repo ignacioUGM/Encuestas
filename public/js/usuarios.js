@@ -36,7 +36,9 @@ $.ajax(
    
      if(response){
       console.log(response)
-      $("#userTable tbody").prepend('<tr><td>'+ response.id +'</td><td>'+ response.name +'</td><td>'+ response.lastname +'</td><td>'+ response.email +'</td><td>'+ response.password +'</td><td>'+ response.gender +'</td><td>'+ response.type_user +'</td></tr>');
+      $("#userTable tbody").append('<tr><td>'+ response.id +'</td><td>'+ response.name +'</td><td>'+ response.lastname +'</td><td>'+ response.email +'</td><td>'+ response.gender +'</td><td>'+ response.type_user +'</td><td>'+ "<button type='button' class='btn btn-success btn-sm'  data-toggle='modal' data-target='#editModal'  onclick='editUsuarios({{$users->id}})'><i class='glyphicon glyphicon-edit'></i></button>" + 
+      "<button type='button' class='btn btn-success btn-sm' onclick='editContraseña({{$users->id}})'   data-toggle='modal' data-target='#contraseñaModal'> <i class='glyphicon glyphicon-cog' > </i> </button>" +
+      "<button type='button' class='btn btn-success btn-sm' onclick='DeleteUsuario({{$users->id}})'>  <i class='glyphicon glyphicon-trash'></i></button>" +'</td></tr>');
       $("#message").html(response.message);
 
 	    $("#userForm")[0].reset();

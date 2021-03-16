@@ -1,15 +1,11 @@
 <?php
 
-use App\Http\Controllers\asignarEncuesta;
-use App\Http\Controllers\asignarEncuestaController;
 use App\Http\Controllers\departamentoController;
 use App\Http\Controllers\encuestaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ModelUserController;
 use App\Http\Controllers\preguntasController;
-use App\Models\encuesta;
-use Illuminate\Database\Eloquent\Model;
-use Monolog\Handler\RotatingFileHandler;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -35,14 +31,15 @@ Route::get('/', function () {
 
 Route::get('historial', function(){
     return view('historial');
-})->name('historial');
+})->name('historial')->middleware('auth');
 
 
 
 //notificaciones
 Route::get('notificaciones', function(){
     return view('notificaciones');
-})->name('notificaciones');
+})->name('notificaciones')
+->middleware('auth');
 
 
 
@@ -50,43 +47,43 @@ Route::get('notificaciones', function(){
 
 
 //asiginar
-Route::get('usuarios2',[preguntasController::class,'asignarEncuesta']);
+Route::get('usuarios2',[preguntasController::class,'asignarEncuesta'])->middleware('auth');
 
 
 
 //rutas preguntas
-Route::get('preguntas',[preguntasController::class,'index'])->name('preguntas');
-Route::get('add-pregunta',[preguntasController::class,'addPregunta']);
-Route::get('recuperar-pregunta/{id}',[preguntasController::class,'getPreguntaId']);                                                  
-Route::put('update-pregunta',[preguntasController::class,'editarPreguntas']);
-Route::delete('delete-pregunta/{id}',[preguntasController::class,'deletePregunta']);
+Route::get('preguntas',[preguntasController::class,'index'])->name('preguntas')->middleware('auth');
+Route::get('add-pregunta',[preguntasController::class,'addPregunta'])->middleware('auth');
+Route::get('recuperar-pregunta/{id}',[preguntasController::class,'getPreguntaId'])->middleware('auth');                                                  
+Route::put('update-pregunta',[preguntasController::class,'editarPreguntas'])->middleware('auth');
+Route::delete('delete-pregunta/{id}',[preguntasController::class,'deletePregunta'])->middleware('auth');
 
 
 
 
 //rutas encuestas
-Route::get('encuesta',[encuestaController::class,'index'])->name('encuesta');
-Route::get('add-encuesta',[encuestaController::class,'addEncuesta']);
-Route::get('recuperar-encuesta',[encuestaController::class,'recuperarEncuesta']);
+Route::get('encuesta',[encuestaController::class,'index'])->name('encuesta')->middleware('auth');
+Route::get('add-encuesta',[encuestaController::class,'addEncuesta'])->middleware('auth');
+Route::get('recuperar-encuesta',[encuestaController::class,'recuperarEncuesta'])->middleware('auth');
 
 
 //rutas de usuarios
-Route::get('usuarios',[ModelUserController::class,'index'])->name('usuarios');
+Route::get('usuarios',[ModelUserController::class,'index'])->name('usuarios')->middleware('auth');
 //Route::get('usuarios-buscar',[ModelUserController::class,'buscar'])->name('usuarios-buscar');
-Route::get('add-users',[ModelUserController::class,'addUsers']);
-Route::delete('delete-users/{id}',[ModelUserController::class,'deleteUsuario']);
-Route::get('edit-users/{id}',[ModelUserController::class,'getUsersId']);
-Route::put('update-users',[ModelUserController::class,'updateUsers']);
+Route::get('add-users',[ModelUserController::class,'addUsers'])->middleware('auth');
+Route::delete('delete-users/{id}',[ModelUserController::class,'deleteUsuario'])->middleware('auth');
+Route::get('edit-users/{id}',[ModelUserController::class,'getUsersId'])->middleware('auth');
+Route::put('update-users',[ModelUserController::class,'updateUsers'])->middleware('auth');
 // Route::get('edit-contraseña/{id}',[ModelUserController::class,'getContraseñaId']);
-Route::put('change-password',[ModelUserController::class,'changePass']);
+Route::put('change-password',[ModelUserController::class,'changePass'])->middleware('auth');
 
 
 //ruta del departamento
-Route::get('departamento',[departamentoController::class, 'index'])->name('departamento');
-Route::get('add-departamento',[departamentoController::class,'agregarDepartamento']);
-Route::get('edit-departamento/{id}',[departamentoController::class,'getDepartamentoId']);
-Route::put('update-departamento',[departamentoController::class,'updateDepartamento']);
-Route::delete('delete-departamento/{id}',[departamentoController::class,'deleteDepartamento']);
+Route::get('departamento',[departamentoController::class, 'index'])->name('departamento')->middleware('auth');
+Route::get('add-departamento',[departamentoController::class,'agregarDepartamento'])->middleware('auth');
+Route::get('edit-departamento/{id}',[departamentoController::class,'getDepartamentoId'])->middleware('auth');
+Route::put('update-departamento',[departamentoController::class,'updateDepartamento'])->middleware('auth');
+Route::delete('delete-departamento/{id}',[departamentoController::class,'deleteDepartamento'])->middleware('auth');
 
 //rutas del auth
 Auth::routes();

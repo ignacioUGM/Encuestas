@@ -23,8 +23,8 @@ function departamento(){
        
          if(response){
           console.log(response)
-          $("#departamentoTable tbody").append('<tr><td>'+ response.nombre_departamento +'</td><td>'+ response.descripcion_departamento +'</td><td>'+ response.created_at +'</td><td>'+ "<button type='button' class='btn btn-success btn-sm'  data-toggle='modal' data-target='#editDepartamento' onclick='editaDepartamento({{$departamento->id}})'>"+"<i class='glyphicon glyphicon-edit'>"+'</i></button>'+
-          "<button type='button' class='btn btn-danger btn-sm'  data-toggle='modal' data-target='' onclick='DeleteDepartamento({{$departamento->id}})'>"+"<i class='glyphicon glyphicon-trash'>"+'</i></button>'+'</td></tr>')
+          $("#departamentoTable tbody").append('<tr><td>'+ response.nombre_departamento +'</td><td>'+ response.descripcion_departamento +'</td><td>'+ response.created_at +'</td><td>'+ "<button type='button' class='btn btn-success btn-sm'  data-toggle='modal' data-target='#editDepartamento' onclick='editaDepartamento({{$departamento->id}})'><i class='glyphicon glyphicon-edit'> </i></button>"+
+          "  <button type='button' class='btn btn-danger btn-sm'  data-toggle='modal' data-target='' onclick='DeleteDepartamento({{$departamento->id}})'> <i class='glyphicon glyphicon-trash'> </i></button> </td></tr>")
             $("#guardar_departamento")[0].reset();
            $("#nuevo_departamento").modal('show');
         }

@@ -24,7 +24,8 @@ function CrearPreguntas() {
 
             if (response) {
                console.log(response)
-               $("#preguntasTable tbody").append('<tr><td>' + response.nombre_pregunta + '</td><td>' + response.descripcion_pregunta + '</td></tr>')
+               $("#preguntasTable tbody").append('<tr><td>' + response.nombre_pregunta + '</td><td>' + response.descripcion_pregunta + '</td><td><button type="button" class="btn btn-success btn-sm"  data-toggle="modal" data-target="#edit_pregunta"><i class="glyphicon glyphicon-edit" onclick="recuperaridencuesta({{$pregunta->id}})"></i> </button>'+
+               '<button type="button" class="btn btn-danger btn-sm"  data-toggle="modal" data-target="" onclick="DeletePregunta({{$pregunta->id}})"> <i class="glyphicon glyphicon-trash"></i> </button> </td></tr>');
                $("#guardar_pregunta")[0].reset();
                $("#nueva_pregunta").modal('show');
             }
