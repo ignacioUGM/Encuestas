@@ -19,14 +19,14 @@ class preguntasController extends Controller
      
 
          try {
-        
-            
+          
+            $departamentos = Departamento::all();
             $preguntas=pregunta::orderBy('id','ASC')
             ->select('id_encuesta', 'id', 'nombre_pregunta', 'descripcion_pregunta' )
 
             ->where('id_encuesta','=', $request->id_encuesta)->get();
                       
-            $departamentos = Departamento::all();
+           
 
 
         return view('preguntas',compact('preguntas','departamentos'));
@@ -210,21 +210,52 @@ public function deletePregunta($id){
     
     }
 
-    public function asignarEncuesta(Request $request){
+    //  public function asignarEncuesta(Request $request){
         
-    $usuarios2 = Departamento::OrderBy('id','ASC')->join( 'users','users.departamento_usuario' ,'=' ,'departamentos.id')
-    ->join('genero', 'nombre_genero', '=', 'users.gender')
-    ->select('users.id', 'name', 'lastname', 'nombre_genero', 'nombre_departamento')->where($request->departamentos)->get();
+    //      try {
+            
+    //     $departamentos = Departamento::all();
+    //     $usuarios2 = Departamento::OrderBy('departamentos.id','ASC')->join( 'users','users.departamento_usuario' ,'=' ,'departamentos.id')
+    //     ->join('genero', 'nombre_genero', '=', 'users.gender')
+    //     ->select('users.id', 'name', 'lastname', 'nombre_genero', 'nombre_departamento',  'departamentos.id', 'nombre_pregunta', 'descripcion_pregunta' )
+    //     ->get();
+    
+    //     return view('usuarios2', compact('usuarios2','$departamentos'));
 
-    return view('usuarios2', compact('usuarios2'));
+
+
+    //     } catch (\Throwable $th) {
+    //         return response()->json( $th);
+    //     }
+
+
+
+    //  }
+
+
+    public function asignarDepartamento(Request $request){
+ 
+
+        $departamentos = Departamento::all();
+        
+        $usuarios2 = Departamento::OrderBy('departamentos.id','ASC')->join( 'users','users.departamento_usuario' ,'=' ,'departamentos.id')
+        ->join('genero', 'id_genero', '=', 'users.gender')
+        ->join('tipo_usuario', 'tipo_usuario.id_tipo_usuario', '=' ,'users.type_user')
+        ->select('users.id', 'name', 'lastname', 'nombre_genero','email','nombre_usuario' , 'nombre_departamento','departamentos.id' )
+        ->get();
+       
+
+       
+        return view('usuarios2',compact('usuarios2','departamentos'));
+    }
+
+    public function asignarUsuario(){
+ 
+return request()->all();
 
 
     }
-
     
-
-
-
 
     }
         

@@ -6,6 +6,12 @@
 		
 
 
+<form method="POST" action="asignarUsuario">
+@csrf
+
+
+
+<input name="departamento" value="{{ app('request')->input('departamento') }}">
 
 <div class="card-body">
 				
@@ -25,14 +31,13 @@
 
 @foreach ($usuarios2 as $users)
 
-
 <tr>
 <td> {{$users->id}} </td>
 <td> {{$users->name}}</td>
 <td> {{$users->lastname}}</td>
 <td> {{$users->email}}</td>
 <td> {{$users->nombre_usuario}}</td>
-<td><button type="button" class="btn btn-success btn-sm"><i class='glyphicon glyphicon-edit'></i> </button> </td>
+<td><div class="col-sm-12"><div class="checkbox"><label><input type="checkbox" name="asignacion[]" value="{{$users->id}}"><span class="cr"></span></label></div> </td>
 </tr>
 
 
@@ -43,6 +48,9 @@
 </table>
 </div>
 
+<input type="submit" value="enviar">
+
+</form>
 
 <script src="{{ asset('js/asignar.js') }}" type="text/javascript"></script>
 </body>

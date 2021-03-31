@@ -1,5 +1,6 @@
 <?php
 
+
 use App\Http\Controllers\departamentoController;
 use App\Http\Controllers\encuestaController;
 use Illuminate\Support\Facades\Route;
@@ -41,6 +42,12 @@ Route::get('notificaciones', function(){
 })->name('notificaciones')
 ->middleware('auth');
 
+Route::get('responder_encuesta', function(){
+    return view('responder_encuesta');
+})->name('responder_encuesta');
+
+
+
 
 
 
@@ -48,6 +55,8 @@ Route::get('notificaciones', function(){
 
 //asiginar
 Route::get('usuarios2',[preguntasController::class,'asignarEncuesta'])->middleware('auth');
+Route::post('asignarUsuario',[preguntasController::class,'asignarUsuario'])->middleware('auth');
+Route::get('asignarUsuario',[preguntasController::class,'asignarUsuario'])->middleware('auth');
 
 
 
@@ -57,7 +66,7 @@ Route::get('add-pregunta',[preguntasController::class,'addPregunta'])->middlewar
 Route::get('recuperar-pregunta/{id}',[preguntasController::class,'getPreguntaId'])->middleware('auth');                                                  
 Route::put('update-pregunta',[preguntasController::class,'editarPreguntas'])->middleware('auth');
 Route::delete('delete-pregunta/{id}',[preguntasController::class,'deletePregunta'])->middleware('auth');
-
+Route::get('asignarEncuesta',[preguntasController::class,'asignarEncuesta']);
 
 
 
@@ -65,11 +74,12 @@ Route::delete('delete-pregunta/{id}',[preguntasController::class,'deletePregunta
 Route::get('encuesta',[encuestaController::class,'index'])->name('encuesta')->middleware('auth');
 Route::get('add-encuesta',[encuestaController::class,'addEncuesta'])->middleware('auth');
 Route::get('recuperar-encuesta',[encuestaController::class,'recuperarEncuesta'])->middleware('auth');
+Route::get('usuarios2',[preguntasController::class,'asignarDepartamento']);
+Route::post('usuarios2',[preguntasController::class,'asignarDepartamento']);
 
 
 //rutas de usuarios
 Route::get('usuarios',[ModelUserController::class,'index'])->name('usuarios')->middleware('auth');
-//Route::get('usuarios-buscar',[ModelUserController::class,'buscar'])->name('usuarios-buscar');
 Route::get('add-users',[ModelUserController::class,'addUsers'])->middleware('auth');
 Route::delete('delete-users/{id}',[ModelUserController::class,'deleteUsuario'])->middleware('auth');
 Route::get('edit-users/{id}',[ModelUserController::class,'getUsersId'])->middleware('auth');
