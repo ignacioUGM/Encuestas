@@ -1,10 +1,11 @@
 function departamento(){
-
+    let id = $('#id').val();
     let nombre_departamento = $("#nombre_departamento").val();
     let descripcion_departamento = $("#descripcion_departamento").val();
     let _token = $("input[name=_token]").val();
     
-    const data = {      
+    const data = {    
+       id:id,  
         nombre_departamento:nombre_departamento,
        descripcion_departamento:descripcion_departamento,
        _token:_token
@@ -17,25 +18,27 @@ function departamento(){
         url:"add-departamento",
         method:"GET",
         data,
-       success:function(response)
-    {
+       success:function(response){
        console.log(data)
        
          if(response){
           console.log(response)
-          $("#departamentoTable tbody").append('<tr><td>'+ response.nombre_departamento +'</td><td>'+ response.descripcion_departamento +'</td><td>'+ response.created_at +'</td><td>'+ "<button type='button' class='btn btn-success btn-sm'  data-toggle='modal' data-target='#editDepartamento' onclick='editaDepartamento({{$departamento->id}})'><i class='glyphicon glyphicon-edit'> </i></button>"+
-          "  <button type='button' class='btn btn-danger btn-sm'  data-toggle='modal' data-target='' onclick='DeleteDepartamento({{$departamento->id}})'> <i class='glyphicon glyphicon-trash'> </i></button> </td></tr>")
-            $("#guardar_departamento")[0].reset();
-           $("#nuevo_departamento").modal('show');
-        }
-       else(response) 
-         
+
+          if (typeof response.id !== 'undefined') {
+
+            $("#departamentoTable tbody").append('<tr><td>'+ response.nombre_departamento +'</td><td>'+ response.descripcion_departamento +'</td><td>'+ response.created_at +'</td><td>'+ "<button type='button' class='btn btn-success btn-sm'  data-toggle='modal' data-target='#editDepartamento' onclick='editaDepartamento("+response.id+")'><i class='glyphicon glyphicon-edit'> </i></button>"+
+            "  <button type='button' class='btn btn-danger btn-sm'  data-toggle='modal' data-target='' onclick='DeleteDepartamento("+response.id+")'> <i class='glyphicon glyphicon-trash'> </i></button> </td></tr>")
+              $("#guardar_departamento")[0].reset();
+             $("#nuevo_departamento").modal('show');
+          }
+
+          
       $("#message").html(response.message);
 
-
-       }
-    }
-    );
+           }
+          }
+        }
+      );
     }
 
 
@@ -108,15 +111,32 @@ function departamento(){
              _token : $("input[name=_token]").val()
            
             },
-                success:function(response)
+                success: function(response)
                 {
-                   console.log(response)
-                  $("#sid"+id).remove();
+                   console.log('delete', response)
+
+                   $("#departamentoTable tbody").html('')
+                   
+                   response.map(function (element, index) {
+      
+                   $("#departamentoTable tbody").append('<tr><td hidden>'+ element.id +'</td><td>'+ element.nombre_departamento +'</td><td>'+ element.descripcion_departamento +'</td><td>'+ element.created_at +'</td><td>'+ "<button type='button' class='btn btn-success btn-sm'  data-toggle='modal' data-target='#editDepartamento' onclick='editaDepartamento("+element.id+")'><i class='glyphicon glyphicon-edit'> </i></button>"+
+                   "<button type='button' class='btn btn-danger btn-sm'  data-toggle='modal' data-target='' onclick='DeleteDepartamento("+element.id+")'> <i class='glyphicon glyphicon-trash'> </i></button> </td></tr>")
+                  
+                    $("#guardar_departamento")[0].reset();
+                    $("#nuevo_departamento").modal('show');
+
+                  });
+
+                    $("#sid" +id).remove();
+
+                   departamento()
 
                 } 
+
+               
          });
       }
-         }
+}
       
       
     

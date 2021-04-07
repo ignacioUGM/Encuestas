@@ -369,7 +369,10 @@ public function changePass(Request $request)
 public function deleteUsuario($id){
 $usuario=User::find($id);
 $usuario->delete();
-return response()->json(['success'=>'el usuario ha sido borrado correctamente']);
+$usuarios_actualizado = User::all();
+return $usuarios_actualizado; 
+
+//return response()->json(['success'=>'el usuario ha sido borrado correctamente']);
 
 
 

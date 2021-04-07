@@ -54,5 +54,19 @@ class usuarioSeeder extends Seeder
   
           ]);
 
+          DB::table('users')->insert([
+         
+            'name'=>'Admin',
+            'email'=>'admin@admin.com',
+            'password'=>bcrypt('1234'),
+            'lastname'=>'Admin',
+            'gender'=>'1',
+            'type_user'=>'1',
+            'departamento_usuario'=>'2'
+   
+  
+          ]);
+
+
     }
 }

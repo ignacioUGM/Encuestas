@@ -18,12 +18,14 @@
                 <table id="asignarUserTable" class="table table-striped">
                 <thead>
                <tr>
+                <th>ID_departamento</th>
                 <th>ID</th>
                 <th>Nombres</th>
                 <th>Apellido</th>
                 <th>Correo electronico</th>
                 <th>Tipo de usuario</th>
                 <th>Seleccion</th>
+
                
 </tr>
 </thead>
@@ -32,6 +34,7 @@
 @foreach ($usuarios2 as $users)
 
 <tr>
+<td> {{$users->departamento_usuario}} </td>
 <td> {{$users->id}} </td>
 <td> {{$users->name}}</td>
 <td> {{$users->lastname}}</td>

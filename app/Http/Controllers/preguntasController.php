@@ -233,7 +233,7 @@ public function deletePregunta($id){
     //  }
 
 
-    public function asignarDepartamento(Request $request){
+    public function asignarDepartamento(){
  
 
         $departamentos = Departamento::all();
@@ -241,7 +241,8 @@ public function deletePregunta($id){
         $usuarios2 = Departamento::OrderBy('departamentos.id','ASC')->join( 'users','users.departamento_usuario' ,'=' ,'departamentos.id')
         ->join('genero', 'id_genero', '=', 'users.gender')
         ->join('tipo_usuario', 'tipo_usuario.id_tipo_usuario', '=' ,'users.type_user')
-        ->select('users.id', 'name', 'lastname', 'nombre_genero','email','nombre_usuario' , 'nombre_departamento','departamentos.id' )
+        ->select('users.id', 'name', 'lastname', 'nombre_genero','email','nombre_usuario' , 'nombre_departamento','departamentos.id', 'users.departamento_usuario')
+        // ->where('departamentos.id','=','users.departamento_usuario')
         ->get();
        
 

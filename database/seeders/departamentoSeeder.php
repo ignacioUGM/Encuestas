@@ -23,5 +23,15 @@ class departamentoSeeder extends Seeder
   
   
           ]);
+
+          DB::table('departamentos')->insert([
+             
+            'nombre_departamento'=>'Departamento Administrador',
+            'descripcion_departamento'=>'este es el departamento del administrador',
+            'created_at'=>'07-04-2021'
+
+  
+  
+          ]);
     }
 }

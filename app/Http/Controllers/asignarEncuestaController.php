@@ -30,15 +30,5 @@ class asignarEncuestaController extends Controller
 
 
 
-    // public function asignarDepartamento(){
- 
 
-    //     $usuarios2 = User::orderBy('users.id','ASC')
-    //     ->join('tipo_usuario', 'tipo_usuario.id_tipo_usuario', '=' ,'users.type_user')
-    //     ->get();
-    //     $departamentos = Departamento::all();
-    //     return view('usuarios2',compact('usuarios2','departamentos'));
-
-
-    // }
 }

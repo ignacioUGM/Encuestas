@@ -177,6 +177,8 @@ class departamentoController extends Controller
     {
         $departamentos = Departamento::find($id);
         $departamentos->delete();
-        return response()->json(['success' => 'el departamento ha sido borrado correctamente']);
+        $departamento_actualizado = Departamento::all();
+        return $departamento_actualizado;
+        // return response()->json(['success' => 'el departamento ha sido borrado correctamente']);
     }
 }
