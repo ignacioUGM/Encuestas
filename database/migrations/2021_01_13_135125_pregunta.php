@@ -15,12 +15,11 @@ class Pregunta extends Migration
     {
         Schema::create('pregunta',function(Blueprint $table){
 
-            $table->id();
-            $table->bigInteger('id_encuesta')->index();        
+            $table->id();   
             $table->string('nombre_pregunta');
             $table->text('descripcion_pregunta');
+            $table->bigInteger('id_seccion');
             $table->timestamps();
-
              });
     }
 

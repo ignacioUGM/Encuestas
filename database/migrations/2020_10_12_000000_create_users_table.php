@@ -24,7 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('lastname')->nullable();
             $table->bigInteger('gender')->nullable();
             $table->bigInteger('type_user')->nullable();
-            $table->bigInteger('departamento_usuario')->nullable();
+            $table->bigInteger('departamento_usuario');
             $table->bigInteger('estado_usuario')->nullable();
             //$table->bigInteger('type_user')->references('id_tipo_usuario')->on('tipo_usuario');
         });

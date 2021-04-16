@@ -6,7 +6,8 @@ use App\Http\Controllers\encuestaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ModelUserController;
 use App\Http\Controllers\preguntasController;
-
+use App\Http\Controllers\usuario_encuesta;
+use Illuminate\Routing\RouteUri;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,15 +43,15 @@ Route::get('notificaciones', function(){
 })->name('notificaciones')
 ->middleware('auth');
 
-Route::get('responder_encuesta', function(){
-    return view('responder_encuesta');
-})->name('responder_encuesta');
+// Route::get('responder_encuesta', function(){
+//     return view('responder_encuesta');
+// })->name('responder_encuesta');
 
 
 
 
 
-
+Route::get('responder_encuesta',[usuario_encuesta::class,'Usuario_Encuesta']);
 
 
 //asiginar
@@ -66,7 +67,7 @@ Route::get('add-pregunta',[preguntasController::class,'addPregunta'])->middlewar
 Route::get('recuperar-pregunta/{id}',[preguntasController::class,'getPreguntaId'])->middleware('auth');                                                  
 Route::put('update-pregunta',[preguntasController::class,'editarPreguntas'])->middleware('auth');
 Route::delete('delete-pregunta/{id}',[preguntasController::class,'deletePregunta'])->middleware('auth');
-Route::get('asignarEncuesta',[preguntasController::class,'asignarEncuesta']);
+
 
 
 
@@ -84,7 +85,6 @@ Route::get('add-users',[ModelUserController::class,'addUsers'])->middleware('aut
 Route::delete('delete-users/{id}',[ModelUserController::class,'deleteUsuario'])->middleware('auth');
 Route::get('edit-users/{id}',[ModelUserController::class,'getUsersId'])->middleware('auth');
 Route::put('update-users',[ModelUserController::class,'updateUsers'])->middleware('auth');
-// Route::get('edit-contraseña/{id}',[ModelUserController::class,'getContraseñaId']);
 Route::put('change-password',[ModelUserController::class,'changePass'])->middleware('auth');
 
 

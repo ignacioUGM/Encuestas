@@ -29,7 +29,8 @@ class DatabaseSeeder extends Seeder
         $this->call(tipo_usuarioSeeder::class);
         $this->call(usuario_encuesta_Seeder::class);
         $this->call(usuarioSeeder::class);
-        
+        $this->call(seccionSeeder::class);
+     
         
         
       

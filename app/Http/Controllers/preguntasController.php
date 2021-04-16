@@ -4,8 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Departamento;
 use App\Models\pregunta;
+use App\Models\seccion_pregunta;
 use App\Models\User;
+use App\Models\usuario_encuesta;
+use Database\Seeders\seccion_preguntaSeeder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 class preguntasController extends Controller
 {
     /**
@@ -21,10 +26,18 @@ class preguntasController extends Controller
          try {
           
             $departamentos = Departamento::all();
-            $preguntas=pregunta::orderBy('id','ASC')
-            ->select('id_encuesta', 'id', 'nombre_pregunta', 'descripcion_pregunta' )
+            // $preguntas=pregunta::orderBy('id','ASC')
+            // ->select('id_encuesta', 'id', 'nombre_pregunta', 'descripcion_pregunta' )
 
-            ->where('id_encuesta','=', $request->id_encuesta)->get();
+            // ->where('id_encuesta','=', $request->id_encuesta)->get();
+
+
+            $preguntas=pregunta::orderBy('pregunta.id','ASC')
+            ->select('seccion.nombre_seccion','seccion.id_encuesta','pregunta.id','pregunta.nombre_pregunta', 'pregunta.descripcion_pregunta')
+
+            ->join('seccion','seccion.id','=','pregunta.id_seccion')
+
+            ->where('seccion.id_encuesta','=', $request->id_encuesta)->get();
                       
            
 
@@ -233,26 +246,73 @@ public function deletePregunta($id){
     //  }
 
 
-    public function asignarDepartamento(){
+    public function asignarDepartamento(Request $request){
  
 
-        $departamentos = Departamento::all();
-        
-        $usuarios2 = Departamento::OrderBy('departamentos.id','ASC')->join( 'users','users.departamento_usuario' ,'=' ,'departamentos.id')
+       // return $request;
+
+        $usuarios2 = User::orderBy('users.id', 'ASC')
+        ->join('departamentos', 'departamentos.id', '=', 'users.departamento_usuario')
         ->join('genero', 'id_genero', '=', 'users.gender')
         ->join('tipo_usuario', 'tipo_usuario.id_tipo_usuario', '=' ,'users.type_user')
-        ->select('users.id', 'name', 'lastname', 'nombre_genero','email','nombre_usuario' , 'nombre_departamento','departamentos.id', 'users.departamento_usuario')
-        // ->where('departamentos.id','=','users.departamento_usuario')
-        ->get();
-       
+        ->select('users.id', 'name', 'lastname', 'nombre_genero','email','nombre_departamento','nombre_usuario')
+        ->where('departamentos.id','=', $request->departamento)->get();
 
        
-        return view('usuarios2',compact('usuarios2','departamentos'));
+    
+        
+
+        return view('usuarios2',compact('usuarios2'));
     }
 
-    public function asignarUsuario(){
- 
-return request()->all();
+    public function asignarUsuario(Request $request){
+        
+
+        // return $request;
+
+    //   return $request->asignacion;
+
+          
+       $asignaciones=$request->asignacion;
+    
+        // Seteamos las propiedades
+
+     //   dd($asignaciones);
+
+     try {
+         
+    
+
+
+        foreach($asignaciones as $indice => $asigna){
+
+            $usuario_encuesta = new usuario_encuesta();
+            $usuario_encuesta->id_usuario  = $asigna;
+            $usuario_encuesta->id_encuesta = $request->id_encuesta;
+            $usuario_encuesta->created_at = now();
+            $usuario_encuesta->updated_at = now();
+            $usuario_encuesta->estado_encuesta = 1;
+            $usuario_encuesta->save();
+        }
+     } catch (\Throwable $th) {
+        return response()->json($th);
+     }
+
+
+
+        //dd($usuario_encuesta);
+
+
+        
+
+        // Guardamos en la base de datos (equivalente al flush de Doctrine)
+      // $usuario_encuesta->save();
+        
+      // return $usuario_encuesta;
+        
+
+
+//     return request()->all();
 
 
     }

@@ -32,6 +32,8 @@ class departamentoController extends Controller
 
         try {
 
+             
+
             if (!isset($request->nombre_departamento)) {
                 return ['message' => 'error... Debe ingresar el nombre del departamento', 'type' => 'error'];
             } else
@@ -41,17 +43,15 @@ class departamentoController extends Controller
             } 
 
 
+             
 
-
-
+                
 
                 $departamentos = new Departamento();
                 $departamentos->nombre_departamento = $request->nombre_departamento;
                 $departamentos->descripcion_departamento = $request->descripcion_departamento;
-
+                $departamentos->dependencia = $request->dependencia;
                 $departamentos->created_at = now();
-
-
                 $departamentos->save();
             
 

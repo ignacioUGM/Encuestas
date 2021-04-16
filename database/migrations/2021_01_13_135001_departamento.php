@@ -17,6 +17,7 @@ class Departamento extends Migration
        $table->id();
        $table->string('nombre_departamento')->index();
        $table->text('descripcion_departamento');
+       $table->bigInteger('dependencia')->nullable();
        $table->timestamps('');
 
 

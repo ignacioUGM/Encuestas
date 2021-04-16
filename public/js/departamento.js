@@ -3,12 +3,14 @@ function departamento(){
     let nombre_departamento = $("#nombre_departamento").val();
     let descripcion_departamento = $("#descripcion_departamento").val();
     let _token = $("input[name=_token]").val();
+    let dependencia = $("#dependencia").val();
     
     const data = {    
        id:id,  
         nombre_departamento:nombre_departamento,
        descripcion_departamento:descripcion_departamento,
-       _token:_token
+       _token:_token,
+       dependencia:dependencia
        
     }
 

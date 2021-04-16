@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSeccionPreguntasTable extends Migration
+class Seccion extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,14 @@ class CreateSeccionPreguntasTable extends Migration
      */
     public function up()
     {
-        Schema::create('seccion_preguntas', function (Blueprint $table) {
+        Schema::create('seccion',function(Blueprint $table){
+
             $table->id();
+            $table->bigInteger('id_encuesta');
+            $table->string('nombre_seccion');
             $table->timestamps();
-        });
+
+             });
     }
 
     /**
@@ -26,6 +30,6 @@ class CreateSeccionPreguntasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('seccion_preguntas');
+        Schema::dropIfExists('seccion');
     }
 }

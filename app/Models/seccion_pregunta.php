@@ -5,22 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class pregunta extends Model
+class seccion_pregunta extends Model
 {
     use HasFactory;
 
-    protected $table = 'pregunta';
-  
+    protected $table = 'seccion_preguntas';
   
     protected $fillable = [
-        'nombre_pregunta',
-        'descripcion_pregunta',
-        'id_seccion'
- 
         
+        'id_encuesta',
+        'id_seccion',
+        'id_pregunta'
+    
     ];
-
-
-
-
 }

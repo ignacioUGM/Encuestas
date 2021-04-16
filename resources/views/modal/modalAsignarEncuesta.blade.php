@@ -20,7 +20,7 @@
 
 
 					<div class="form-group">
-						
+						<input  id='id_encuesta' type="hidden" name="id_encuesta" value="{{$_GET['id_encuesta']}}">
 							<label for="descripcion">Departamento</label>
 							<select id="departamento" name="departamento" class="form-select form-select-sm" aria-label=".form-select-sm example">
 								<option value="">--escoga el departamento</option>
@@ -41,8 +41,7 @@
 
 
 					<div class="modal-footer">
-						<button type="button" class="btn btn-success" onclick="{{$departamentos}}">Confirmar</button>
-						<input type="submit" value="Confirmar 2">
+						<input type="submit" class="btn btn-success" value="Confirmar">
 						<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
 					</div>
 				</form>

@@ -48,7 +48,19 @@
 				  
 				</div>
 			  </div>
-	 
+
+			  <div class="form-group">
+			  <label for="descripcion">Depende de:</label>
+							<select id="dependencia" name="dependencia" class="form-select form-select-sm" aria-label=".form-select-sm example">
+								<option value="">--escoga el departamento</option>
+							
+								@foreach ($departamentos as $departamento)
+								<option value="{{$departamento['id']}}">{{$departamento['nombre_departamento']}} </option>
+								@endforeach
+
+							</select>
+
+	 </div>
 		  </div>
 		  <div class="modal-footer">
 			<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>

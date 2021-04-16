@@ -11,7 +11,7 @@
                 <div class="panel-body">
                     <h1 style="text-align: center">Nombre de Encuesta:{{$_GET['id_encuesta']}} </h1>  
 
-<input  id='id_encuesta' type="hidden" value="{{$_GET['id_encuesta']}}">
+
                 </div>
                 <div class="panel-heading">
                    
@@ -38,7 +38,7 @@
                 <div class="panel-body">
 
                     <form class="form-horizontal" role="form" id="datos_cotizacion">
-
+                    <input  id='id_encuesta' type="hidden" name="id_encuesta" value="{{$_GET['id_encuesta']}}">
                         <div class="form-group row">
                             <label for="q" class="col-md-2 control-label">Nombre</label>
                             <div class="col-md-5">
@@ -53,31 +53,37 @@
                     <div class="card-body">
 				
                 <table id="preguntasTable" class="table table-striped">
-                <thead>
-               <tr>
-                <th>Nombre</th>
-                <th>Descripcion</th>
-                <th>Acciones</th>
-               
+                    <thead>
+                
+                <tr>
+                
+                    <th>seccion</th>
+                    <th>Nombre</th>
+                    <th>Descripcion</th>
+                    <th>Acciones</th>
+                
 
-               
-</tr>
-</thead>
-<tbody>
+                
+    </tr>
 
-@foreach ($preguntas as $pregunta)
+    </thead>
+    <tbody>
+
+    @foreach ($preguntas as $pregunta)
 
 
-<tr id="sid{{$pregunta->id}}">
-<td> {{$pregunta->nombre_pregunta}} </td>
-<td> {{$pregunta->descripcion_pregunta}}</td>
-<td><button type="button" class="btn btn-success btn-sm"  data-toggle="modal" data-target="#edit_pregunta"><i class='glyphicon glyphicon-edit' onclick="recuperaridencuesta({{$pregunta->id}})"></i> </button>
-<button type='button' class="btn btn-danger btn-sm"  data-toggle="modal" data-target="" onclick="DeletePregunta({{$pregunta->id}})"> <i class='glyphicon glyphicon-trash'></i> </button>
-</td>
-</tr>
 
-@endforeach
-    </tbody>
+    <tr id="sid{{$pregunta->id}}">
+    <td> {{$pregunta->nombre_seccion}}</td>
+    <td> {{$pregunta->nombre_pregunta}} </td>
+    <td> {{$pregunta->descripcion_pregunta}}</td>
+    <td><button type="button" class="btn btn-success btn-sm"  data-toggle="modal" data-target="#edit_pregunta"><i class='glyphicon glyphicon-edit' onclick="recuperaridencuesta({{$pregunta->id}})"></i> </button>
+    <button type='button' class="btn btn-danger btn-sm"  data-toggle="modal" data-target="" onclick="DeletePregunta({{$pregunta->id}})"> <i class='glyphicon glyphicon-trash'></i> </button>
+    </td>
+    </tr>
+
+    @endforeach
+        </tbody>
         </table>
                    </div>
                 </div>
