@@ -3,12 +3,14 @@ function CrearPreguntas() {
    let id_encuesta = $("#id_encuesta").val();
    let nombre_pregunta = $("#nombre_pregunta").val();
    let descripcion_pregunta = $("#descripcion_pregunta").val();
+   let id_seccion = $("#seccion").val();
    let _token = $("input[name=_token]").val();
 
    const data = {
       id_encuesta: id_encuesta,
       nombre_pregunta: nombre_pregunta,
       descripcion_pregunta: descripcion_pregunta,
+      id_seccion: id_seccion,
       _token: _token
 
    }
@@ -24,7 +26,7 @@ function CrearPreguntas() {
 
             if (response) {
                console.log(response)
-               $("#preguntasTable tbody").append('<tr><td>' + response.nombre_pregunta + '</td><td>' + response.descripcion_pregunta + '</td><td><button type="button" class="btn btn-success btn-sm"  data-toggle="modal" data-target="#edit_pregunta"><i class="glyphicon glyphicon-edit" onclick="recuperaridencuesta({{$pregunta->id}})"></i> </button>'+
+               $("#preguntasTable tbody").append('<tr><td>' + response.id_seccion + '</td><td>' + response.nombre_pregunta + '</td><td>' + response.descripcion_pregunta + '</td><td><button type="button" class="btn btn-success btn-sm"  data-toggle="modal" data-target="#edit_pregunta"><i class="glyphicon glyphicon-edit" onclick="recuperaridencuesta({{$pregunta->id}})"></i> </button>'+
                '<button type="button" class="btn btn-danger btn-sm"  data-toggle="modal" data-target="" onclick="DeletePregunta({{$pregunta->id}})"> <i class="glyphicon glyphicon-trash"></i> </button> </td></tr>');
                $("#guardar_pregunta")[0].reset();
                $("#nueva_pregunta").modal('show');

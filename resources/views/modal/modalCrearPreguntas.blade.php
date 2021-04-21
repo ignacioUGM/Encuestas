@@ -38,6 +38,21 @@
 				  
 				</div>
 			  </div>
+			 
+			  <div class="form-group">
+			  <label for="descripcio">Seccion</label>
+			  
+							<select id="seccion" name="seccion" class="form-select form-select-sm" aria-label=".form-select-sm example">
+								<option value="">--escoga a que seccion pertenece la pregunta </option>
+							
+								@foreach ($seccion as $seccion_pregunta)
+								<option value="{{$seccion_pregunta['id']}}">{{$seccion_pregunta['nombre_seccion']}} </option>
+							    @endforeach
+
+							</select>
+
+	
+		  </div>
 	 
 		  </div>
 		  <div class="modal-footer">

@@ -15,8 +15,8 @@ class comentario_generalSeeder extends Seeder
     public function run()
     {
         
-            DB::table('comentario_general')->insert([
-              'id_encuesta'=>'1',
+            DB::table('notes_seccion')->insert([
+              'id_seccion'=>'1',
               'descripcion_comentario_general'=>'esta es una simulacion del comentario general, me gusta escribir cosas sin sentido cuando hay una prueba de por medio, porque es entretenido, ademas que me gusta escuchar como suenan mis teclas rapidamente',
               'id_usuario'=>'1',
               'id_evaluado'=>'1',

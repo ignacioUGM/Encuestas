@@ -19,7 +19,7 @@ class CreateNotesTable extends Migration
             $table->bigInteger('id_evaluado');
             $table->string('comentario_calificacion');
             $table->bigInteger('nota_calificacion');
-            $table->timestamp('fecha_calificacion');
+            $table->timestamps();
           
         });
 

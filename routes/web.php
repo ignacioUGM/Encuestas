@@ -1,6 +1,6 @@
 <?php
 
-
+use App\Http\Controllers\asignarEncuestaController;
 use App\Http\Controllers\departamentoController;
 use App\Http\Controllers\encuestaController;
 use Illuminate\Support\Facades\Route;
@@ -29,8 +29,6 @@ Route::get('/', function () {
 
 //historial
 
-
-
 Route::get('historial', function(){
     return view('historial');
 })->name('historial')->middleware('auth');
@@ -50,8 +48,11 @@ Route::get('notificaciones', function(){
 
 
 
-
-Route::get('responder_encuesta',[usuario_encuesta::class,'Usuario_Encuesta']);
+Route::get('encuesta_usuario',[asignarEncuestaController::class,'usuario_encuesta'])->name('responder');
+Route::get('recuperar_encuesta',[asignarEncuestaController::class,'recuperarEncuesta']);
+Route::post('recuperar_encuesta',[asignarEncuestaController::class,'recuperarEncuesta']);
+Route::get('responder_encuesta',[asignarEncuestaController::class,'responder_encuesta']);
+Route::post('responder_encuesta',[asignarEncuestaController::class,'responder_encuesta']);
 
 
 //asiginar

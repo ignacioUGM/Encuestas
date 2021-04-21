@@ -13,13 +13,15 @@ class CreateComentarioPreguntasTable extends Migration
      */
     public function up()
     {
-        Schema::create('comentario_preguntas', function (Blueprint $table) {
-            $table->id();
-            $table->bigInteger('id_encuesta')->index();
+        Schema::create('notes_encuesta', function (Blueprint $table) {
+
+        $table->bigInteger('id_encuesta')->index();
           $table->bigInteger('id_usuario');
           $table->bigInteger('id_evaluado');
-          $table->text('descripcion_comentario_preguntas');
-          $table->timestamp('fecha_comentario_general')->nullable();
+          $table->text('comentario_general');
+          $table->timestamps();
+
+        
         });
     }
 
@@ -30,6 +32,6 @@ class CreateComentarioPreguntasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('comentario_preguntas');
+        Schema::dropIfExists('notes_encuesta');
     }
 }

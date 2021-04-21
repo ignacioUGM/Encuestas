@@ -1,42 +1,111 @@
 @include('layouts.app')
 
-<table>
+<html lang="en">
 
-<thead>
-               
-               <tr>
-            
-                <th>seccion</th>
-                <th>Nombre</th>
-                <th>Descripcion</th>
-                <th>Acciones</th>
-               
+<head>
 
-               
-</tr>
+    <div class="container">
+        <div class="panel panel-success">
+            <div class="panel-body">
+                <h1 style="text-align: center">Nombre de Encuesta:{{$_GET['id_encuesta']}} </h1>
+                
+            </div>
 
-</thead>
-<tbody>
-
-@foreach ($users_encuesta as $responder_encuesta)
-
-
-
-<tr >
-<td> {{$responder_encuesta->id}}</td>   
-<td> {{$responder_encuesta->nombre_seccion}}</td>
-<td> {{$responder_encuesta->nombre_pregunta}} </td>
-<td> {{$responder_encuesta->descripcion_pregunta}}</td>
-</tr>
-
-@endforeach
-    </tbody>
+            <div class="panel-body">
 
 
 
 
+                <form class="form-horizontal" role="form" id="guardar_evaluacion">
+                    <input id='id_encuesta' type="hidden" name="id_encuesta" value="{{$_GET['id_encuesta']}}">
+
+                    <div class="outer_div">
+
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                   
+                                        <td colspan="2" style="text-align: center"><strong class="form-control">Evaluador :   </strong></td>
+                                        <td colspan="3" style="text-align: center"><strong class="form-control">A Evaluar</strong></td>
+                                        <td colspan="1" style="text-align: center">
+                                            <select id="t_evaluar" name="t_evaluar" class="form-control" >
+
+                                    </tr>
+                                
+                                </thead>
+                                <tbody>
+                                    <tr class="alert alert-primary">
+
+                                        @foreach($seccion as $index => $valor)
+                                        
+                                        <th class="alert alert-primary">{{$valor->nombre_seccion}}</th>
+
+                                        <th  style="text-align: center">Nivel 1</th>
+                                        <th style="text-align: center">Nivel 2</th>
+                                        <th style="text-align: center">Nivel 3</th>
+                                        <th style="text-align: center">Nivel 4</th>
+                                        <th style="text-align: center">Nivel 5</th>
+                                        <th>Comentario</th>
+
+                                    </tr>
+                                    @foreach($pregunta as $index_p => $valor_p)
+                                    
+
+                                    @if($valor_p->id_seccion == $valor->id)
+                                    <tr>
+
+                                        <td>{{$valor_p->nombre_pregunta}}</td>
+                                        <td><input class="form-check-input" type="radio" name="calificacion_{{$index_p}}" value="1" required=""></td>
+                                        <td><input class="form-check-input" type="radio" name="calificacion_{{$index_p}}" value="2" required=""></td>
+                                        <td><input class="form-check-input" type="radio" name="calificacion_{{$index_p}}" value="3" required=""></td>
+                                        <td><input class="form-check-input" type="radio" name="calificacion_{{$index_p}}" value="4" required=""></td>
+                                        <td><input class="form-check-input" type="radio" name="calificacion_{{$index_p}}" value="5" required=""></td>
+                                        <td><textarea class="form-control" type="text" name="comentario_pregunta[]" id="comentario_pregunta"></textarea></td>
+
+                                    </tr>
+                                    
+                                    @endif
+                                    @endforeach
+                                    <tr>
+                                        <td colspan="8" style="text-align: center" class="alert alert-primary"> Comentario General </td>
+
+
+                                    </tr>
+                                    <tr>
+
+                                        <td colspan="8"><textarea class="form-control" type="text" name="comentario_final" id="comentario_final" required=""></textarea></td>
+
+                                     
+                                    </tr>
+
+                                    @endforeach
+                                  <td>  <td>   <input class="btn btn-success btn-lg btn-block" type="submit" value="enviar"> </td></td>
+                                </tbody>
+
+                                <tfoot>
+                             
+
+
+                                </tfoot>
 
 
 
 
-</table>
+
+
+                        </div>
+                    </div>
+
+            </div>
+        </div>
+
+    </div>
+
+
+
+    </form>
+
+    </body>
+
+</html>

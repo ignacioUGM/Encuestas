@@ -9,13 +9,13 @@ class seccion_pregunta extends Model
 {
     use HasFactory;
 
-    protected $table = 'seccion_preguntas';
+    protected $table = 'seccion';
   
     protected $fillable = [
         
-        'id_encuesta',
-        'id_seccion',
-        'id_pregunta'
+        
+        
+        'nombre_seccion'
     
     ];
 }

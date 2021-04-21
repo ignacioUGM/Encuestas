@@ -43,6 +43,7 @@
 
 				<th>Nombre</th>
 				<th>Descripcion</th>
+				<th>Depende</th>
 				<th>Agregado</th>
 			
 			
@@ -57,6 +58,7 @@
 <tr id="sid{{$departamento->id}}">
 <td> {{$departamento->nombre_departamento}} </td>
 <td> {{$departamento->descripcion_departamento}}</td>
+<td> {{$departamento->dependencia}}
 <td> {{$departamento->created_at}}</td>
 
 <td><button type='button' class="btn btn-success btn-sm"  data-toggle="modal" data-target="#editDepartamento" onclick="editaDepartamento({{$departamento->id}})"><i class='glyphicon glyphicon-edit'></i></button>

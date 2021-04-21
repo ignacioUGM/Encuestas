@@ -7,9 +7,8 @@ use App\Models\pregunta;
 use App\Models\seccion_pregunta;
 use App\Models\User;
 use App\Models\usuario_encuesta;
-use Database\Seeders\seccion_preguntaSeeder;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+
 
 class preguntasController extends Controller
 {
@@ -30,10 +29,11 @@ class preguntasController extends Controller
             // ->select('id_encuesta', 'id', 'nombre_pregunta', 'descripcion_pregunta' )
 
             // ->where('id_encuesta','=', $request->id_encuesta)->get();
-
+           
+            $seccion = seccion_pregunta::all();
 
             $preguntas=pregunta::orderBy('pregunta.id','ASC')
-            ->select('seccion.nombre_seccion','seccion.id_encuesta','pregunta.id','pregunta.nombre_pregunta', 'pregunta.descripcion_pregunta')
+            ->select('seccion.nombre_seccion','seccion.id_encuesta','pregunta.id','pregunta.nombre_pregunta', 'pregunta.descripcion_pregunta', 'seccion.id', 'pregunta.id_seccion')
 
             ->join('seccion','seccion.id','=','pregunta.id_seccion')
 
@@ -42,7 +42,7 @@ class preguntasController extends Controller
            
 
 
-        return view('preguntas',compact('preguntas','departamentos'));
+        return view('preguntas',compact('preguntas','departamentos','seccion'));
 
          } catch (\Throwable $th) {
              
@@ -131,20 +131,22 @@ class preguntasController extends Controller
         try {
 
             if (!isset($request->nombre_pregunta)) {
-                return ['message' => 'error... Debe ingresar el nombre del departamento', 'type' => 'error'];
+                return ['message' => 'error... Debe ingresar el nombre de la pregunta', 'type' => 'error'];
             } else
             
             if (!isset($request->descripcion_pregunta)) {
-                return ['message' => 'error... Debe ingresar la descripcion del departamento', 'type' => 'error'];
+                return ['message' => 'error... Debe ingresar la descripcion de la pregunta', 'type' => 'error'];
             } 
 
 
                 $preguntas = new pregunta();
-                $preguntas->id_encuesta = $request->id_encuesta;
+                
                 $preguntas->nombre_pregunta = $request->nombre_pregunta;
                 $preguntas->descripcion_pregunta = $request->descripcion_pregunta;
+                $preguntas->id_seccion = $request->id_seccion;
                 $preguntas->updated_at = now();
                 $preguntas->created_at = now();
+            
                 
 
             //       return $preguntas;
@@ -216,35 +218,15 @@ class preguntasController extends Controller
 public function deletePregunta($id){
     $preguntas=pregunta::find($id);
     $preguntas->delete();
+
+    
     return response()->json(['success'=>'la pregunta ha sido borrado correctamente']);
-    
-    
-    
-    
+     
+   
+
     }
 
-    //  public function asignarEncuesta(Request $request){
-        
-    //      try {
-            
-    //     $departamentos = Departamento::all();
-    //     $usuarios2 = Departamento::OrderBy('departamentos.id','ASC')->join( 'users','users.departamento_usuario' ,'=' ,'departamentos.id')
-    //     ->join('genero', 'nombre_genero', '=', 'users.gender')
-    //     ->select('users.id', 'name', 'lastname', 'nombre_genero', 'nombre_departamento',  'departamentos.id', 'nombre_pregunta', 'descripcion_pregunta' )
-    //     ->get();
     
-    //     return view('usuarios2', compact('usuarios2','$departamentos'));
-
-
-
-    //     } catch (\Throwable $th) {
-    //         return response()->json( $th);
-    //     }
-
-
-
-    //  }
-
 
     public function asignarDepartamento(Request $request){
  
@@ -264,6 +246,8 @@ public function deletePregunta($id){
 
         return view('usuarios2',compact('usuarios2'));
     }
+
+
 
     public function asignarUsuario(Request $request){
         
@@ -293,6 +277,9 @@ public function deletePregunta($id){
             $usuario_encuesta->updated_at = now();
             $usuario_encuesta->estado_encuesta = 1;
             $usuario_encuesta->save();
+
+            return view('notificaciones');
+
         }
      } catch (\Throwable $th) {
         return response()->json($th);
@@ -317,6 +304,14 @@ public function deletePregunta($id){
 
     }
     
+  
+          
+           
+      
+
+
+
+
 
     }
         

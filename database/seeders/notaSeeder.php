@@ -21,7 +21,7 @@ class notaSeeder extends Seeder
             'id_evaluado'=>'1',
             'comentario_calificacion'=>'falto ponerle mas empeño 7u7',
             'nota_calificacion'=>'7',
-            'fecha_calificacion'=>'01-14-2021',
+   
             
 
   
