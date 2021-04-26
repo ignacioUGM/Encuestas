@@ -38,15 +38,15 @@
 
                     <br> <br> <br> <br>
 
+
             
                     <div id="view_encuesta" class="outer_div">
        
                         @foreach ($encuestaUsuarios as $encuestaUsuario)
-                      
-
+                        
                         <div  class="col-lg-2 col-md-2 col-sm-6 col-xs-12 thumb text-center ng-scope" ng-repeat="item in records">
                         <a class="thumbnail" href='responder_encuesta?id_encuesta={{$encuestaUsuario->id_encuesta}}'>  
-
+                     
                                 <img id="imagen" class="img-responsive" src="image/encuesta.png">
 
                             </a>

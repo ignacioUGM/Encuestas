@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Departamento;
+use App\Models\encuesta;
 use App\Models\pregunta;
 use App\Models\seccion_pregunta;
+use App\Models\tipo_encuesta;
 use App\Models\User;
 use App\Models\usuario_encuesta;
 use Illuminate\Http\Request;
@@ -20,7 +22,7 @@ class preguntasController extends Controller
     public function index(Request $request)
 
     {
-     
+        
 
          try {
           
@@ -127,7 +129,7 @@ class preguntasController extends Controller
     }
     public function addPregunta(Request $request)
     {
-
+           
         try {
 
             if (!isset($request->nombre_pregunta)) {
@@ -163,6 +165,8 @@ class preguntasController extends Controller
 
 
     public function getPreguntaId($id){
+          
+        
 
         $preguntas=pregunta::find($id);
         return response()->json($preguntas);
@@ -231,20 +235,30 @@ public function deletePregunta($id){
     public function asignarDepartamento(Request $request){
  
 
-       // return $request;
-
-        $usuarios2 = User::orderBy('users.id', 'ASC')
-        ->join('departamentos', 'departamentos.id', '=', 'users.departamento_usuario')
-        ->join('genero', 'id_genero', '=', 'users.gender')
-        ->join('tipo_usuario', 'tipo_usuario.id_tipo_usuario', '=' ,'users.type_user')
-        ->select('users.id', 'name', 'lastname', 'nombre_genero','email','nombre_departamento','nombre_usuario')
-        ->where('departamentos.id','=', $request->departamento)->get();
-
-       
-    
+         
+        
         
 
-        return view('usuarios2',compact('usuarios2'));
+        
+           
+            $usuarios2 = User::orderBy('users.id', 'ASC')
+            ->join('departamentos', 'departamentos.id', '=', 'users.departamento_usuario')
+            ->join('genero', 'id_genero', '=', 'users.gender')
+            ->join('tipo_usuario', 'tipo_usuario.id_tipo_usuario', '=' ,'users.type_user')
+            ->select('users.id', 'name', 'lastname', 'nombre_genero','email','nombre_departamento','nombre_usuario')
+            ->where('departamentos.id','=', $request->departamento)->get();
+    
+           
+        
+            
+    
+            return view('usuarios2',compact('usuarios2'));
+         
+            
+
+         
+        
+       
     }
 
 
@@ -266,7 +280,7 @@ public function deletePregunta($id){
      try {
          
     
-
+      
 
         foreach($asignaciones as $indice => $asigna){
 
@@ -277,10 +291,13 @@ public function deletePregunta($id){
             $usuario_encuesta->updated_at = now();
             $usuario_encuesta->estado_encuesta = 1;
             $usuario_encuesta->save();
-
-            return view('notificaciones');
-
+    
+     
         }
+   
+        return response()->json($usuario_encuesta);
+
+
      } catch (\Throwable $th) {
         return response()->json($th);
      }

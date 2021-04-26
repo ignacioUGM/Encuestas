@@ -16,8 +16,8 @@ class UsuarioEncusta extends Migration
         Schema::create('usuario_encuesta',function(Blueprint $table){
 
             $table->id();
-            $table->bigInteger('id_usuario')->unique();
-            $table->bigInteger('id_encuesta')->unique();                       
+            $table->bigInteger('id_usuario');
+            $table->bigInteger('id_encuesta');                       
             $table->bigInteger('estado_encuesta'); 
             $table->timestamps();          
      

@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
 
 
@@ -22,75 +23,76 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-<!--head type container  -->
+    <!--head type container  -->
 
 
-        <!--<meta charset="utf-8">
+    <!--<meta charset="utf-8">
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />-->
-<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" /> 
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
 
-<!--Bootstrap-->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <!--Bootstrap-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 
 
 
 
 
-    
-    
+
+
 </head>
+
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-               
+
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                                    <a class="nav-link "  href="{{ route('encuesta') }}">{{ __('Encuestas') }}</a>
-                                </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="{{ route('encuesta') }}">{{ __('Encuestas') }}</a>
+                        </li>
 
 
 
-                                <li class="nav-item">
-                                <a class="nav-link "  href="{{ route('departamento') }}">{{ __('Departamentos') }}</a>
-                                </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="{{ route('departamento') }}">{{ __('Departamentos') }}</a>
+                        </li>
 
 
-                                <li class="nav-item">
-                                <a class="nav-link "  href="{{ route('usuarios') }}">{{ __('Usuarios') }}</a>
-                                </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="{{ route('usuarios') }}">{{ __('Usuarios') }}</a>
+                        </li>
 
 
 
-                                <li class="nav-item">
-                              <a class="nav-link" href="{{ route('historial') }}"> {{ __('Historial') }}</a>
-                            </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('historial') }}"> {{ __('Historial') }}</a>
+                        </li>
 
 
-                             <li class="nav-item">
-                                <a class="nav-link "  href="{{ route('notificaciones') }}">{{ __('Notificaciones') }}</a>
-                                </li>
-                   
+                        <li class="nav-item">
+                            <a class="nav-link " href="{{ route('notificaciones') }}">{{ __('Notificaciones') }}</a>
+                        </li>
 
-                    <li class="nav-item">
-                                <a class="nav-link "  href="{{ route('responder') }}">{{ __('Encuestas Pendientes') }}</a>
-                                </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link " href="{{ route('responder') }}">{{ __('Encuestas Pendientes') }}</a>
+                        </li>
                     </ul>
 
 
-                  
 
-                    
+
+
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -98,41 +100,55 @@
                         @guest
 
 
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Ingresar') }}</a>
-                                </li>
-                            @endif
-                            
-                           
+                        @if (Route::has('login'))
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('login') }}">{{ __('Ingresar') }}</a>
+                        </li>
+                        @endif
+
+
                         @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name}}
-                                    {{ Auth::user()->lastname}}
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ Auth::user()->name}}
+                                {{ Auth::user()->lastname}}
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                    {{ __('Cerrar Sesión') }}
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Cerrar Sesión') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                            </div>
+                        </li>
                         @endguest
                     </ul>
                 </div>
             </div>
         </nav>
 
+        @if (session()->has('flash'))
+
+        <div class="container">
+
+            <div class="alert alert-success" role="alert">
+                <strong>Aviso:</strong> {{ session('flash') }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+        </div>
+        @endif
+
         <main class="py-4">
             @yield('content')
         </main>
     </div>
 </body>
+
 </html>

@@ -14,16 +14,15 @@ class encuestaSeeder extends Seeder
      */
     public function run()
     {
-        // DB::table('encuestas')->insert([
+        DB::table('encuestas')->insert([
              
-        //     'nombre_encuesta'=>'Servel',
-        //     'tipo_encuesta'=>'1',
-        //     'created_at'=>'01-01-2021',
-        //     'estado_encuesta'=>'1',
-
+            'nombre_encuesta'=>'Encuesta Desempeño',
+            'tipo_encuesta'=>'2',
+            'estado_encuesta'=>'1',
+            'created_at'=>'2021-04-21'
   
   
-        //   ]);
+          ]);
         //   DB::table('encuestas')->insert([
              
         //     'nombre_encuesta'=>'Servel2',

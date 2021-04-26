@@ -12,7 +12,9 @@
 
 <input  id='id_encuesta' type="hidden" name="id_encuesta" value="{{$_POST['id_encuesta']}}">
 <input type="hidden" name="departamento" value="{{ app('request')->input('departamento') }}">
-
+<div class="container" style="width: 90%">
+		<div class="panel panel-success">
+		<div class="panel-heading">
 <div class="card-body">
 				
                 <table id="asignarUserTable" class="table table-striped">
@@ -53,8 +55,13 @@
 
 </table>
 </div>
+<input type="submit" class="btn btn-primary btn-lg btn-block" value="asignar">
 
-<input type="submit" value="enviar">
+</div>
+</div>
+
+</div>
+
 
 </form>
 

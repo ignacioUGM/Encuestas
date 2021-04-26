@@ -41,22 +41,22 @@ Route::get('notificaciones', function(){
 })->name('notificaciones')
 ->middleware('auth');
 
-// Route::get('responder_encuesta', function(){
-//     return view('responder_encuesta');
-// })->name('responder_encuesta');
 
 
 
 
 Route::get('encuesta_usuario',[asignarEncuestaController::class,'usuario_encuesta'])->name('responder');
-Route::get('recuperar_encuesta',[asignarEncuestaController::class,'recuperarEncuesta']);
-Route::post('recuperar_encuesta',[asignarEncuestaController::class,'recuperarEncuesta']);
-Route::get('responder_encuesta',[asignarEncuestaController::class,'responder_encuesta']);
-Route::post('responder_encuesta',[asignarEncuestaController::class,'responder_encuesta']);
+Route::get('recuperar_encuesta',[asignarEncuestaController::class,'recuperarEncuesta'])->middleware('auth');
+Route::post('recuperar_encuesta',[asignarEncuestaController::class,'recuperarEncuesta'])->middleware('auth');
+Route::get('responder_encuesta',[asignarEncuestaController::class,'responder_encuesta'])->middleware('auth');
+Route::post('responder_encuesta',[asignarEncuestaController::class,'responder_encuesta'])->middleware('auth');
+Route::get('calificaciones',[asignarEncuestaController::class,'calificaciones'])->middleware('auth');
+Route::post('calificaciones',[asignarEncuestaController::class,'calificaciones'])->middleware('auth');
 
 
 //asiginar
 Route::get('usuarios2',[preguntasController::class,'asignarEncuesta'])->middleware('auth');
+Route::post('usuarios2',[preguntasController::class,'asignarEncuesta'])->middleware('auth');
 Route::post('asignarUsuario',[preguntasController::class,'asignarUsuario'])->middleware('auth');
 Route::get('asignarUsuario',[preguntasController::class,'asignarUsuario'])->middleware('auth');
 
