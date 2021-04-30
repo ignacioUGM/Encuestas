@@ -24,19 +24,23 @@ class ModelUserController extends Controller
 
     public function index(Request $request)
     {
+       //aca buscamos a las personas ya sea por su nombre y/o apellido.
 
       try {
         $buscarpor = $request->get('buscarpor');
 
 if(isset($buscarpor)){
   $buscarpor = $request->get('buscarpor');
-  $usuarios = DB::table('users')->join('genero', 'genero.id_genero', '=', 'users.gender')
+  $usuarios = DB::table('users')
+  ->join('genero', 'genero.id_genero', '=', 'users.gender')
+  ->join('departamentos', 'departamentos.id', '=', 'users.departamento_usuario')
   ->join('tipo_usuario', 'tipo_usuario.id_tipo_usuario', '=' ,'users.type_user')
+  ->select('users.id','users.lastname', 'users.name', 'users.created_at', 'users.password', 'users.email','users.gender' ,'genero.nombre_genero', 'users.type_user', 'tipo_usuario.nombre_usuario','departamentos.nombre_departamento' )
   ->where('name', 'like', '%' . $buscarpor . '%'  )->orWhere('lastname', 'like', '%' . $buscarpor . '%'  )->paginate($this::PAGINACION);
 }else{
 
       
-
+//y aca ordenamos a los usuarios.
 
   $usuarios = User::orderBy('users.id','ASC')
   ->join('departamentos', 'departamentos.id', '=', 'users.departamento_usuario')
@@ -47,6 +51,8 @@ if(isset($buscarpor)){
   
   
 }
+//estos son los select que se encuentran en los modals.
+
 $departamentos = Departamento::all();
 $generos = genero::all();
 $type_users = typeUser::all();
@@ -79,7 +85,7 @@ $type_users = typeUser::all();
 
     public function addUsers(Request $request)
     {
-    
+        //aca creamos a los usuarios  cabe recalcar que esto tambien esta validado por parte de ajax public/js
         try {
             
             if (!isset($request->name)) {
@@ -272,7 +278,7 @@ $type_users = typeUser::all();
 
 
 public function getUsersId($id){
-
+//aca recuperamos el id del usuario.
 $users=User::find($id);
 return response()->json($users);
 
@@ -281,6 +287,10 @@ return response()->json($users);
 }
 
 public function updateUsers(Request $request){
+
+  //por otra parte aca podemos editar el registro del usuario  cabe recalcar que esto tambien esta validado por parte de ajax public/js
+  //ademas falta validar el cambio de contraseña
+
             try {
 
               $usuario = User::find($request->id);

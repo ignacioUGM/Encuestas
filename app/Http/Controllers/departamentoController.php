@@ -17,9 +17,19 @@ class departamentoController extends Controller
      */
     public function index()
     {
-        $departamentos = Departamento::orderBy('id', 'ASC')
+
+            //aca recuperamos todos los departamentos
+
+        $departamentos = Departamento::orderBy('departamentos.id','ASC')
+        // ->select('departamentos.id', 'departamentos.nombre_departamento', 'b.dependencia', 'departamentos.descripcion_departamento', 'departamentos.created_at')
+        // ->join('departamentos as  b',  'b.id', '=', 'departamentos.id') 
+        // ->join('departamentos.dependencia','=','departamentos.nombre_departamento')       
+        // ->where('departamentos.dependencia','=','departamento.id')
+   
+      
 
         ->get();
+
         return view('departamento', compact('departamentos'));
     }
 
@@ -31,6 +41,8 @@ class departamentoController extends Controller
 
     public function agregarDepartamento(Request $request)
     {
+
+        //aca creamos departamentos...
 
         try {
 
@@ -130,6 +142,7 @@ class departamentoController extends Controller
     public function getDepartamentoId($id)
     {
 
+        //aca recuperamos el id del departamento para asi poder editarlo y eliminarlo
      
     $departamentos=Departamento::find($id);
     return response()->json($departamentos);
@@ -144,6 +157,9 @@ class departamentoController extends Controller
 
     public function updateDepartamento(Request $request)
     {
+             
+        //aca actualizamos el departamento
+
         try {
 
             $departamentos = Departamento::find($request->id);
@@ -177,6 +193,9 @@ class departamentoController extends Controller
 
     public function deleteDepartamento($id)
     {
+      
+      //por otro lado aca borramos al departamento.
+
         $departamentos = Departamento::find($id);
         $departamentos->delete();
         $departamento_actualizado = Departamento::all();

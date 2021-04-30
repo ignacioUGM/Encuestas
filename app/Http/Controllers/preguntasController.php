@@ -23,6 +23,7 @@ class preguntasController extends Controller
 
     {
         
+        //aca se recupera el id de la encuesta y ordena a las preguntas
 
          try {
           
@@ -129,6 +130,8 @@ class preguntasController extends Controller
     }
     public function addPregunta(Request $request)
     {
+
+        //aca se crean las preguntas con sus respectivas validaciones.
            
         try {
 
@@ -165,7 +168,7 @@ class preguntasController extends Controller
 
 
     public function getPreguntaId($id){
-          
+          //aca recuperamos el id de la pregunta.
         
 
         $preguntas=pregunta::find($id);
@@ -178,7 +181,7 @@ class preguntasController extends Controller
 
 
     public function editarPreguntas(Request $request){
-
+//por otro lado aca editamos la pregunta  cabe recalcar que esto tambien esta validado por parte de ajax public/js.
 
         try {
 
@@ -220,6 +223,8 @@ class preguntasController extends Controller
 
 
 public function deletePregunta($id){
+
+    //y aca borramos la pregunta cabe recalcar que esto tambien esta validado por parte de ajax public/js
     $preguntas=pregunta::find($id);
     $preguntas->delete();
 
@@ -228,19 +233,35 @@ public function deletePregunta($id){
      
    
 
-    }
-
+    
+}
     
 
     public function asignarDepartamento(Request $request){
- 
 
-         
-        
+        // return $request;
         
 
-        
+
+        // if (isset($request->{('users.type_user' == 1)})){
            
+            
+        //        $jefe = User::orderBy('users.id,ASC')
+               
+        //        ->join('departamentos', 'departamentos.id', '=', 'users.departamento_usuario')
+        //        ->join('genero', 'id_genero', '=', 'users.gender')
+        //        ->join('tipo_usuario', 'tipo_usuario.id_tipo_usuario', '=' ,'users.type_user')
+        //        ->select('users.id', 'name', 'lastname', 'nombre_genero','email','nombre_departamento','nombre_usuario')
+        //        ->where('departamentos.id','=', $request->departamento)
+        //        ->where('')
+        //        ->get();
+
+              
+    
+             
+            // }
+ 
+        
             $usuarios2 = User::orderBy('users.id', 'ASC')
             ->join('departamentos', 'departamentos.id', '=', 'users.departamento_usuario')
             ->join('genero', 'id_genero', '=', 'users.gender')
@@ -251,8 +272,8 @@ public function deletePregunta($id){
            
         
             
-    
             return view('usuarios2',compact('usuarios2'));
+            
          
             
 
@@ -279,8 +300,6 @@ public function deletePregunta($id){
 
      try {
          
-    
-      
 
         foreach($asignaciones as $indice => $asigna){
 

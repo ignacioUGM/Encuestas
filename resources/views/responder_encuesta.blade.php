@@ -1,15 +1,19 @@
 @include('layouts.app')
 
-<html lang="en">
 
-<head>
+
+
     
     <div class="container">
         <div class="panel panel-success">
             <div class="panel-body">
+              
+
                 <h1 style="text-align: center">Nombre de Encuesta:{{$_GET['id_encuesta']}} </h1>
                 
             </div>
+
+            
 
             <div class="panel-body">
 
@@ -26,14 +30,18 @@
                                 <thead>
                                     <tr>
                                           
-                                        
+              
                                         <td colspan="2" style="text-align: center"><strong class="form-control">Evaluador:   </strong></td>
-                                        <td colspan="3" style="text-align: center"><strong class="form-control">A Evaluar</strong></td>
+                                        
+                                        <td colspan="3" style="text-align: center"><strong class="form-control">A Evaluar</strong>
+                                        
+                                        </td>
                                         <td colspan="1" style="text-align: center">
                                             <select id="t_evaluar" name="t_evaluar" class="form-control" > 
-                                        
-                                    
-                                         
+                                           @foreach($evaluados as $evaluado)
+                                           <option value="{{ $evaluado['id'] }}"> {{$evaluado['email']}}</option>
+                                           @endforeach
+                                           </select>
                                     </tr>
                                   
                                 </thead>
@@ -44,11 +52,12 @@
                                         <input id='id_seccion' type="hidden" name="id_seccion" value="{{$valor->id}}">
                                         <th class="hidden">{{$valor->id}} </th>
                                         <th class="alert alert-primary">{{$valor->nombre_seccion}}</th>
-                                        <th  style="text-align: center">Nivel 1</th>
-                                        <th style="text-align: center">Nivel 2</th>
-                                        <th style="text-align: center">Nivel 3</th>
-                                        <th style="text-align: center">Nivel 4</th>
-                                        <th style="text-align: center">Nivel 5</th>
+                                        <th>Descripcion</th>
+                                        <th  style="text-align: center">Nunca</th>&nbsp
+                                        <th style="text-align: center">Casi Nunca</th>&nbsp
+                                        <th style="text-align: center">Algunas Veces</th>&nbsp
+                                        <th style="text-align: center">Casi siempre</th>&nbsp
+                                        <th style="text-align: center">Siempre</th>&nbsp&nbsp&nbsp&nbsp&nbsp
                                         <th>Comentario</th>
 
                                     </tr>
@@ -65,11 +74,12 @@
                                          <input id='id[]' type="hidden" name="id[]" value="{{$valor_p->id}}">
                                         <td class="hidden" >{{$valor_p->id}}</td>
                                         <td>{{$valor_p->nombre_pregunta}}</td>
-                                        <td><input class="form-check-input" type="radio" name="calificacion_{{$index_p}}" value="1" required ></td>
-                                        <td><input class="form-check-input" type="radio" name="calificacion_{{$index_p}}" value="2" required ></td>
-                                        <td><input class="form-check-input" type="radio" name="calificacion_{{$index_p}}" value="3" required ></td>
-                                        <td><input class="form-check-input" type="radio" name="calificacion_{{$index_p}}" value="4" required ></td>
-                                        <td><input class="form-check-input" type="radio" name="calificacion_{{$index_p}}" value="5" required></td>
+                                        <td>{{$valor_p->descripcion_pregunta}}</td>
+                                        <td><input class="form-check-input" type="radio" name="calificacion_{{$index_p}}" value="1" required ></td>&nbsp&nbsp
+                                        <td><input class="form-check-input" type="radio" name="calificacion_{{$index_p}}" value="2" required ></td>&nbsp&nbsp
+                                        <td><input class="form-check-input" type="radio" name="calificacion_{{$index_p}}" value="3" required ></td>&nbsp&nbsp
+                                        <td><input class="form-check-input" type="radio" name="calificacion_{{$index_p}}" value="4" required ></td>&nbsp&nbsp
+                                        <td><input class="form-check-input" type="radio" name="calificacion_{{$index_p}}" value="5" required></td>&nbsp&nbsp
                                         <td><textarea class="form-control" type="text" name="comentario_pregunta[]" id="comentario_pregunta[]"></textarea></td>
 
                                     </tr>
@@ -91,14 +101,21 @@
                                     </tr>
 
                                     @endforeach
-                                  <td>  <td>   <input class="btn btn-success btn-lg btn-block" type="submit" value="enviar"> </td></td>
-                                </tbody>
+                                    <tfoot>
+                            
+                                <td> <td><input class="btn btn-success btn-lg btn-block"  type="submit" value="enviar"> <td></td> 
 
-                                <tfoot>
-                             
 
 
                                 </tfoot>
+                             
+                                </tbody>
+
+                          
+                             
+
+
+                            
 
 
 
@@ -117,6 +134,5 @@
 
     </form>
 
-    </body>
+ 
 
-</html>

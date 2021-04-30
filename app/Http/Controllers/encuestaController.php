@@ -17,6 +17,10 @@ class encuestaController extends Controller
 
     public function index()
     {
+
+
+              //aca mostramos la  vista responsive de la encuesta  cabe recalcar que esto tambien esta validado por parte de ajax public/js
+
         try {
             // $encuestas = encuesta::orderBy('id_encuesta', 'ASC')->get();
 
@@ -110,6 +114,8 @@ class encuestaController extends Controller
     public function addEncuesta(Request $request)
     {
 
+            //aca creamos la encuesta  cabe recalcar que esto tambien esta validado por parte de ajax public/js
+
         try {
 
             if (!isset($request->nombre_encuesta)) {
@@ -139,6 +145,9 @@ class encuestaController extends Controller
     }
     public function recuperarEncuesta(Request $request)
     {
+
+
+        //Por otro lado aca recuperamos la encuesta para crear las preguntas.
 
         $encuesta = DB::table('encuestas')->where('id_encuesta', $request->id_encuesta)->first();
 

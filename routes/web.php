@@ -25,6 +25,10 @@ Route::get('/', function () {
 });
 
 
+Route::get('declaracion', function(){
+    return view('declaracion');
+})->name('declaracion')->middleware('auth');
+
 
 
 //historial
@@ -45,7 +49,7 @@ Route::get('notificaciones', function(){
 
 
 
-Route::get('encuesta_usuario',[asignarEncuestaController::class,'usuario_encuesta'])->name('responder');
+Route::get('encuesta_usuario',[asignarEncuestaController::class,'usuario_encuesta'])->name('responder')->middleware('auth');
 Route::get('recuperar_encuesta',[asignarEncuestaController::class,'recuperarEncuesta'])->middleware('auth');
 Route::post('recuperar_encuesta',[asignarEncuestaController::class,'recuperarEncuesta'])->middleware('auth');
 Route::get('responder_encuesta',[asignarEncuestaController::class,'responder_encuesta'])->middleware('auth');

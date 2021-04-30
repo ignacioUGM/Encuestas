@@ -83,10 +83,11 @@
                             <a class="nav-link " href="{{ route('notificaciones') }}">{{ __('Notificaciones') }}</a>
                         </li>
 
-
+                   
                         <li class="nav-item">
                             <a class="nav-link " href="{{ route('responder') }}">{{ __('Encuestas Pendientes') }}</a>
                         </li>
+              
                     </ul>
 
 

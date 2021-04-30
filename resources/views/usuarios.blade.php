@@ -28,9 +28,10 @@
 							<label for="q" class="col-md-2 control-label">Nombres:</label>
 							<div class="col-md-5">
 							<input name="buscarpor" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" value="{{ $buscarpor }}" >
-							<button class="btn btn-success my-2 my-sm-0" type="submit">Buscar</button>
 							</div>
-
+							<button class="btn btn-success my-2 my-sm-0" type="submit">Buscar</button>
+						
+                           
 
 						</div>
 					 </form>
@@ -45,7 +46,9 @@
                         <th>Correo electronico</th>
                         <th>Genero</th>
 						<th>Tipo Usuario</th>
+						<th>Departamento</th>
 						<th>Botones</th>
+						
 					
                        
     </tr>
@@ -63,8 +66,9 @@
     <td> {{$users->nombre_genero}}</td>
 	<td> {{$users->nombre_usuario}}</td>
     <td hidden>{{$users->password}}</td>
+	<td>{{$users->nombre_departamento}}</td>
 	<td><button type="button" class="btn btn-success btn-sm"  data-toggle="modal" data-target="#editModal"  onclick="editUsuarios({{$users->id}})"><i class='glyphicon glyphicon-edit'></i> </button>
-	<button type="button" class="btn btn-success btn-sm" onclick="editContraseña({{$users->id}})"   data-toggle="modal" data-target="#contraseñaModal"><i class='glyphicon glyphicon-cog' ></i></button>
+  <button type="button" class="btn btn-success btn-sm" onclick="editContraseña({{$users->id}})"   data-toggle="modal" data-target="#contraseñaModal"><i class='glyphicon glyphicon-cog' ></i></button>
 	<button type="button" class="btn btn-success btn-sm" onclick="DeleteUsuario({{$users->id}})">  <i class='glyphicon glyphicon-trash'></i></button>
 	</td>
 
